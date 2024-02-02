@@ -1,0 +1,79 @@
+@extends('layouts.app')
+@section('title','Add Jobs')
+@section('content')
+<div class="content">
+<form action="{{route('jobs.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <h4 class="p-4">Add Job</h4>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+      </ul>
+    </div>
+    @endif
+  <div class="row">
+    <div class="form-group col-12">
+      <input type="text" name="title" value="{{old('title')}}" class="form-control" id="exampleFormControlInput1" placeholder="Job Title">
+    </div>
+    <div class="form-group col-12">
+      <input type="text" name="position" value="{{old('position')}}" class="form-control" id="exampleFormControlInput1" placeholder="Position">
+    </div>
+    <div class="form-group col-6">
+      <input type="number" name="salary" value="{{old('salary')}}" class="form-control" id="exampleFormControlInput1" placeholder="Salary">
+    </div>
+    <div class="form-group col-6">
+      <input type="number" name="vacancy" value="{{old('vacancy')}}" class="form-control" id="exampleFormControlInput1" placeholder="vacancy">
+    </div>
+    <div class="form-group col-4">
+      {{-- <label for="exampleFormControlSelect12">Select Category</label> --}}
+      <select class="form-control" name="category">
+        <option>Select Category</option>
+        @foreach($categories as $cat)
+        <option value="{{$cat->id}}" {{old('category')==$cat->id?'selected':''}}>{{$cat->name}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group col-4">
+      <select class="form-control" name="location">
+        <option>Select Location</option>
+        @foreach($locations as $item)
+        <option value="{{$item->id}}" {{old('location')==$item->id?'selected':''}}>{{$item->name}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group col-4">
+      <select class="form-control" name="industry">
+        <option>Select Industry</option>
+        @foreach($industry as $item)
+        <option value="{{$item->id}}" {{old('industry')==$item->id?'selected':''}}>{{$item->name}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group col-12">
+      <textarea name="description"  class="form-control" placeholder="Job Description">{{old('description')}}</textarea>
+    </div>
+    <div class="form-group col-6">
+      <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
+        <input type="radio" id="customRadio1" name="availability" value="1" {{old('availability')?'checked':''}} class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Available</label>
+      </div>
+      <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
+        <input type="radio" id="customRadio2" name="availability" value="0" {{old('availability')?'':'checked'}}  class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">Not Available</label>
+      </div>
+    </div>
+    <div class="form-group col-6">
+      <input type="file" class="form-control-file" name="photo" id="exampleFormControlFile1">
+    </div>
+    <input type="hidden" name="company" value="@if (Auth::guard('company')->check())
+      {{ Auth::guard('company')->user()->id }}@endif">
+    <div class="form-footer mx-auto">
+      <button type="submit" class="btn btn-primary btn-pill">Add</button>
+    </div>
+  </div>
+</form>
+</div>
+@endsection
