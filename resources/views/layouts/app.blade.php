@@ -29,6 +29,7 @@
     <link href="{{asset('assets/images/favicon.png')}}" rel="shortcut icon" />
     <script src="{{asset('assets/plugins/nprogress/nprogress.js')}}"></script>
     {{-- font awesome --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
 </head>
 

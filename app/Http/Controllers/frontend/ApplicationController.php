@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Applicant;
 use App\Models\frontend\ApplicationModel;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class ApplicationController extends Controller
             ];
         }
         // dd($data); 
-        if (ApplicationModel::create($data)) {
+        if (Applicant::create($data)) {
             $request->cv->move('uploads/cv', $filename);
             return redirect()->back()->with('msg', 'Job Successfully Post');
         }

@@ -77,6 +77,7 @@ Route::prefix('company')->group(function(){
     Route::resource('jobs', JobController::class)->middleware('company');
     Route::resource('applications', ApplicantController::class)->middleware('company');
 
+
     // Route::get('jobs',[JobController::class,'index'])->name('jobs.index')->middleware('company');
     // Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create')->middleware('company');
     // Route::post('jobs/store',[JobController::class,'store'])->name('jobs.store')->middleware('company');

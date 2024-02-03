@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('candidate_details', function (Blueprint $table) {
             $table->id();
-            $table->string('contact',20);
-            $table->string('address',300);
-            $table->string('image',50);
-            $table->text('bio');
+            $table->string('contact',20)->nullable();
+            $table->string('address',300)->nullable();
+            $table->string('image',50)->nullable();
+            $table->text('bio')->nullable();
             $table->integer('candidate_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

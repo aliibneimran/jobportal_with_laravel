@@ -8,10 +8,10 @@
         <div class="container">
           <div class="banner-hero banner-image-single"><img src="../frontend/imgs/page/candidates/img.png" alt="jobbox"><a class="btn-editor" href="#"></a></div>
           <div class="box-company-profile">
-            <div class="image-compay"><img src="../frontend/imgs/page/candidates/candidate-profile.png" alt="jobbox"></div>
+            <div class="image-compay"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="100px" height="100px"></div>
             <div class="row mt-10">
               <div class="col-lg-8 col-md-12">
-                <h5 class="f-18">Steven Jobs <span class="card-location font-regular ml-20">New York, US</span></h5>
+                <h5 class="f-18">{{ Auth::guard('candidate')->user()->name }}<span class="card-location font-regular ml-20">{{ $canDetails->address ?? '' }}</span></h5>
                 <p class="mt-0 font-md color-text-paragraph-2 mb-15">UI/UX Designer. Front end Developer</p>
               </div>
               <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-preview-icon btn-apply btn-apply-big" href="page-contact.html">Preview</a></div>
@@ -50,7 +50,7 @@
                     @csrf
                     @if (Auth::guard('candidate')->check())
                     <div class="mt-35 mb-40 box-info-profie">
-                      <div class="image-profile"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="50px" height="50px">
+                      <div class="image-profile"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="70px" height="70px">
                       </div>
                       <input type="file" name="photo">
                     </div>

@@ -59,10 +59,10 @@ class CandidateController extends Controller
     ];
     $candidate->update($data);
     
-    $filename = time() . '.' . $request->photo->extension();
     $validate = $request->validate([
         'photo' => 'mimes:jpg,jpeg,png'
     ]);
+    $filename = time() . '.' . $request->photo->extension();
     if($validate){
         $details = [
             'contact' => $request->contact,

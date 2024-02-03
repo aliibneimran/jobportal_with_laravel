@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('position',50);
             $table->integer('salary');
             $table->integer('vacancy');
-            $table->string('image',50);
+            $table->string('image',50)->nullable();
             $table->boolean('availability');
             $table->integer('category_id');
             $table->integer('location_id');

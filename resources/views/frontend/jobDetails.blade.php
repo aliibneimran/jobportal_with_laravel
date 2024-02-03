@@ -156,7 +156,7 @@
             {{-- {{Auth::guard('candidate')->user()->id }} --}}
             @csrf
             <input type="hidden" name="job_id" value="{{ $jobs->id }}">
-            <input type="hidden" name="candidate_id" value="{{Auth::guard('candidate')->user()->id }}">
+            <input type="hidden" name="candidate_id" value="@if(Auth::guard('candidate')->check()){{Auth::guard('candidate')->user()->id }}@endif">
             @if(Auth::guard('candidate')->check())
             <div class="form-group">
               <label class="form-label" for="input-1">Full Name *</label>

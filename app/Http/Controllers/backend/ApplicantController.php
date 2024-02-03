@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Applicant;
 use App\Models\frontend\ApplicationModel;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,6 @@ class ApplicantController extends Controller
         $applicants = ApplicationModel::all();
         return view('backend.applications.index',compact('applicants'));
     }
-
     /**
      * Show the form for creating a new resource.
      */

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','All Jobs')
 @section('content')
+
 <div class="content">
     <div class="card card-default">
         <div class="card-header">
@@ -22,6 +23,7 @@
                 <th>Email</th>
                 <th>Cv</th>
                 <th>Job Id</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -37,6 +39,13 @@
                   <a href="{{route('applications.show',$item->id) }}" class="view-cv-link" data-bs-toggle="modal" data-bs-target="#fileModal" data-cv="{{ $item->cv }}"><i class="mdi mdi-eye"></i></a>
                 </td>
                 <td>{{$item->job_id}}</td>
+                <td>
+                  @if ($item->status==0)
+                  <button class="btn btn-warning">Pending</button>
+                  @else
+                  <button class="btn btn-success">Approved</button>
+                  @endif
+                </td>
                 <td>
                   <form method="POST" action="{{ route('jobs.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
                       @csrf
