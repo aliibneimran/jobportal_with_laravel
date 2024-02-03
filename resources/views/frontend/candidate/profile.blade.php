@@ -17,7 +17,12 @@
               <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-preview-icon btn-apply btn-apply-big" href="page-contact.html">Preview</a></div>
             </div>
           </div>
-          <div class="border-bottom pt-10 pb-10"></div>
+          <div class="border-bottom pt-10 pb-10"><!-- Success Message -->
+            @if (session('msg'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('msg') }}
+            </div>
+            @endif</div>
         </div>
       </section>
       <section class="section-box mt-50">
@@ -41,11 +46,11 @@
                     <h3 class="mt-0 mb-15 color-brand-1">My Account</h3><a class="font-md color-text-paragraph-2" href="#">Update your profile</a>
 
 
-                  <form action="" method="" action="" enctype="multipart/form-data">
+                  <form method="" action="" enctype="multipart/form-data">
                     @csrf
                     @if (Auth::guard('candidate')->check())
                     <div class="mt-35 mb-40 box-info-profie">
-                      <div class="image-profile"><img src="../frontend/imgs/page/candidates/candidate-profile.png" alt="jobbox">
+                      <div class="image-profile"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="50px" height="50px">
                       </div>
                       <input type="file" name="photo">
                     </div>
@@ -61,15 +66,15 @@
                         </div>
                         <div class="form-group">
                           <label class="font-sm color-text-mutted mb-10">Contact number</label>
-                          <input class="form-control" type="text" value="{{ Auth::guard('candidate')->user()->contact }}" name="contact">
+                          <input class="form-control" type="text" value="{{ $canDetails->contact ?? '' }}" name="contact">
                         </div>
                         <div class="form-group">
                           <label class="font-sm color-text-mutted mb-10">Bio</label>
-                          <textarea class="form-control" rows="4" name="bio">{{ Auth::guard('candidate')->user()->bio }}</textarea>
+                          <textarea class="form-control" rows="4" name="bio">{{ $canDetails->bio ?? '' }}</textarea>
                         </div>
                         <div class="form-group">
                           <label class="font-sm color-text-mutted mb-10">Address</label>
-                          <input class="form-control" type="url" value="{{ Auth::guard('candidate')->user()->address }}" name="address">
+                          <input class="form-control" type="url" value="{{ $canDetails->address ?? ''}}" name="address">
                         </div>
                         
                         {{-- <div class="border-bottom pt-10 pb-10 mb-30"></div>

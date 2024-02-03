@@ -22,8 +22,8 @@ class CandidateController extends Controller
         }
     }
     public function profile(){
-        $candidate = Candidate::all();
-        return view('frontend.candidate.profile',compact('candidate'));
+        $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
+        return view('frontend.candidate.profile',compact('canDetails'));
     }
     public function logout(){
         Auth::guard('candidate')->logout();
@@ -46,33 +46,43 @@ class CandidateController extends Controller
         
     }
     public function editProfile(){
-        return view('frontend.candidate.editProfile');
+        $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
+        return view('frontend.candidate.editProfile',compact('canDetails'));
     } 
     
     public function updateProfile(Request $request){
 
     $candidate = Candidate::findOrFail(Auth::guard('candidate')->user()->id);
-    $validate = $request->validate([
-        'photo' => 'mimes:jpg,jpeg,png'
-    ]);
-    
-    if (!$validate) {
-        return redirect()->route('candidate_profile')->withErrors($validate);
-    }
-    $filename = time() . '.' . $request->photo->extension();
     $data = [
         'name' => $request->name,
         'email' => $request->email,
-        'contact' => $request->contact,
-        'bio' => $request->bio,
-        'address' => $request->address,
-        'candidate_id' => $request->candidate_id,
-        'image' => $filename,
     ];
     $candidate->update($data);
-    $request->photo->move('uploads/candidate', $filename);
+    
+    $filename = time() . '.' . $request->photo->extension();
+    $validate = $request->validate([
+        'photo' => 'mimes:jpg,jpeg,png'
+    ]);
+    if($validate){
+        $details = [
+            'contact' => $request->contact,
+            'bio' => $request->bio,
+            'address' => $request->address,
+            'candidate_id' => $request->candidate_id,
+            'image' => $filename,
+        ];
+    }
+    // if(CandidateDetails::create($details)) {
+    //     $request->photo->move('uploads', $filename);
+    // }
+    $candidateDetails = CandidateDetails::where('candidate_id', Auth::guard('candidate')->user()->id)->first();
+
+    if (!$candidateDetails) {
+        CandidateDetails::create($details);
+    } else {
+        $candidateDetails->update($details);
+    }
+    $request->photo->move('uploads', $filename);
     return redirect()->route('candidate_profile')->with('msg', 'Profile successfully updated');
     }
-
-
 }
