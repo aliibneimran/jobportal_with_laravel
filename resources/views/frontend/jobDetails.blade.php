@@ -15,9 +15,9 @@
                                 <h3>{{$jobs->title}}</h3>
                                 <div class="mt-0 mb-15"><span class="card-briefcase">{{$jobs->category->name}}</span><span class="card-time">{{$jobs->created_at}}</span></div>
                             </div>
-                            <div class="col-lg-4 col-md-12 text-lg-end">
+                            {{-- <div class="col-lg-4 col-md-12 text-lg-end">
                                 <a class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
                         <div class="banner-hero banner-image-single mt-10 mb-20"><img src="{{ asset('uploads/' . $jobs->image) }}" alt="jobBox"></div>
@@ -69,7 +69,14 @@
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">
-                                <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border" href="#">Save job</a></div>
+                                <div class="col-md-5">
+                                    @if (Auth::guard('candidate')->check())
+                                    <a class="btn btn-default mr-15" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</a>
+                                    <a class="btn btn-border" href="#">Save job</a>
+                                    @else
+                                    <a class="btn btn-primary btn-shadow hover-up mx-2" href="{{ route('candidate_login_form') }}">Please Sign in First</a>
+                                    @endif
+                                </div>
                                 <div class="col-md-7 text-lg-end social-share">
                                     <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-fb.svg')}}"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-tw.svg')}}"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-red.svg')}}"></a><a class="d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-whatsapp.svg')}}"></a>
                                 </div>
@@ -143,26 +150,30 @@
               </ul>
             </div>
           @endif
-          <form class="login-register text-start mt-20 pb-30" action="" method="post" enctype="multipart/form-data"> 
-            {{-- {{route('apply',$jobs->id)}} --}}
+          <form class="login-register text-start mt-20 pb-30" action="{{route('apply.job',$jobs->id)}}" method="post" enctype="multipart/form-data"> 
+            {{-- {{route('apply.job',$jobs->id)}} --}}
+            {{-- {{ $jobs->id }} --}}
+            {{-- {{Auth::guard('candidate')->user()->id }} --}}
             @csrf
             <input type="hidden" name="job_id" value="{{ $jobs->id }}">
+            <input type="hidden" name="candidate_id" value="{{Auth::guard('candidate')->user()->id }}">
+            @if(Auth::guard('candidate')->check())
             <div class="form-group">
               <label class="form-label" for="input-1">Full Name *</label>
-              <input class="form-control" id="input-1" type="text" name="name" placeholder="Steven Job">
+              <input class="form-control" id="input-1" type="text" name="name" value="{{Auth::guard('candidate')->user()->name}}">
             </div>
 
             <div class="form-group">
               <label class="form-label" for="input-2">Email *</label>
-              <input class="form-control" id="input-2" type="email"  name="email" placeholder="stevenjob@gmail.com">
+              <input class="form-control" id="input-2" type="email"  name="email" value="{{Auth::guard('candidate')->user()->email}}">
             </div>
             <div class="form-group">
               <label class="form-label" for="number">Contact Number *</label>
-              <input class="form-control" id="number" type="text" name="contact" placeholder="(+01) 234 567 89">
+              <input class="form-control" id="number" type="text" name="contact" value="{{ $canDetails->contact ?? ''}}">
             </div>
             <div class="form-group">
               <label class="form-label" for="des">Description</label>
-              <input class="form-control" id="des" type="text"  name="bio" placeholder="Your description...">
+              <input class="form-control" id="des" type="text"  name="bio" value="{{Auth::guard('candidate')->user()->bio}}">
             </div>
             <div class="form-group">
               <label class="form-label" for="file">Upload Resume</label>
@@ -177,8 +188,9 @@
               <button class="btn btn-default hover-up w-100" type="submit" name="apply">Apply Job</button>
             </div>
             <div class="text-muted text-center">Do you need support? <a href="contact">Contact Us</a></div>
+            @endif
           </form>
         </div>
       </div>
     </div>
-  </div>
+</div>

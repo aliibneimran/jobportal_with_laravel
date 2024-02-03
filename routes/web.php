@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\JobController;
 use App\Http\Controllers\backend\LocationController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\frontend\ApplicationController;
 use App\Http\Controllers\frontend\CandidateDetailController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\JobDetailsController;
@@ -93,6 +94,8 @@ Route::prefix('candidate')->group(function(){
 
     Route::get('edit-profile', [CandidateController::class, 'editProfile'])->name('candidate.edit.profile')->middleware('candidate');
     Route::post('update-profile', [CandidateController::class, 'updateProfile'])->name('candidate.update.profile')->middleware('candidate');
+
+    Route::post('apply', [ApplicationController::class, 'application'])->name('apply.job')->middleware('candidate');
 
     Route::get('jobs', [JobListController::class, 'index']);
     Route::get('/job/details/{id}', [JobDetailsController::class, 'index'])->name('job.details');

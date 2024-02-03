@@ -90,9 +90,9 @@
                                         <div class="card-2-bottom mt-30">
                                             <div class="row">
                                                 <div class="col-lg-7 col-7"><span class="card-text-price">{{$item->salary}} TK</span></div>
-                                                <div class="col-lg-5 col-5 text-end">
+                                                {{-- <div class="col-lg-5 col-5 text-end">
                                                     <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
-                                                </div>
+                                                </div> --}}
                                                 {{-- <div class="col-lg-5 col-5 text-end">
                                                     <a href="{{ route('add.to.cart', $item->id) }}" class="btn btn-apply-now">Add to Cart</a>
                                                 </div> --}}
