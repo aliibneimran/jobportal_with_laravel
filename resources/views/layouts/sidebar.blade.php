@@ -76,7 +76,7 @@
                         </div>
                     </ul>
                 </li>
-                <li><a class="sidenav-item-link" href=""><i class="mdi mdi-arrow-all"></i><span class="nav-text">Applicants</span></a></li>
+                <li><a class="sidenav-item-link" href="{{route('applications.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Applicants</span></a></li>
                 
             </ul>                
             @endif

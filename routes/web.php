@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\backend\ApplicantController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\IndustryController;
 use App\Http\Controllers\backend\JobController;
@@ -74,6 +75,7 @@ Route::prefix('company')->group(function(){
     //jobs
 
     Route::resource('jobs', JobController::class)->middleware('company');
+    Route::resource('applications', ApplicantController::class)->middleware('company');
 
     // Route::get('jobs',[JobController::class,'index'])->name('jobs.index')->middleware('company');
     // Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create')->middleware('company');
