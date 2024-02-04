@@ -7,6 +7,9 @@ use App\Models\CandidateDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\DemoMail;
+use App\Models\Applicant;
+use Illuminate\Support\Facades\Mail;
 
 class CandidateController extends Controller
 {
@@ -23,7 +26,8 @@ class CandidateController extends Controller
     }
     public function profile(){
         $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
-        return view('frontend.candidate.profile',compact('canDetails'));
+        $application = Applicant::all();
+        return view('frontend.candidate.profile',compact('canDetails','application'));
     }
     public function logout(){
         Auth::guard('candidate')->logout();
@@ -42,6 +46,12 @@ class CandidateController extends Controller
 
         Auth::guard('candidate')->login($candidate);
 
+        
+        // $mailData = [
+        //     'title' => 'Success Register',
+        //     'body' => 'Please Complete Your Profile',
+        // ];
+        // Mail::to('aliibneimran1996@gmail.com')->send(new DemoMail($mailData));
         return redirect()->route('candidate_profile');
         
     }

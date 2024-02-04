@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Applicant;
+use App\Models\Candidate;
 use App\Models\frontend\ApplicationModel;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,7 @@ class ApplicationController extends Controller
                 'bio' => $request->bio,
                 'candidate_id' => $request->candidate_id,
                 'job_id' => $request->job_id,
+                'company_id' => $request->company_id,
                 'cv' => $filename,
             ];
         }

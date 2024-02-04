@@ -77,6 +77,8 @@ Route::prefix('company')->group(function(){
     Route::resource('jobs', JobController::class)->middleware('company');
     Route::resource('applications', ApplicantController::class)->middleware('company');
 
+    Route::post('approve/{id}',[ApplicantController::class,'approve'])->name('approve')->middleware('company');
+
 
     // Route::get('jobs',[JobController::class,'index'])->name('jobs.index')->middleware('company');
     // Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create')->middleware('company');
@@ -102,6 +104,7 @@ Route::prefix('candidate')->group(function(){
 
     Route::get('jobs', [JobListController::class, 'index']);
     Route::get('/job/details/{id}', [JobDetailsController::class, 'index'])->name('job.details');
+
 });
 
 

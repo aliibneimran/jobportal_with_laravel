@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Applicant;
 use App\Models\frontend\ApplicationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
@@ -14,12 +15,22 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        $applicants = ApplicationModel::all();
+        $companyUser = Auth::guard('company')->user();
+        $applicants = Applicant::where('company_id', $companyUser->id)->get();
+        // return view('backend.jobs.index', compact('jobs'))
+        // $applicants = Applicant::all();
         return view('backend.applications.index',compact('applicants'));
     }
     /**
      * Show the form for creating a new resource.
      */
+    public function approve($id)
+    {
+        $status = Applicant::find($id);
+        $status->status = 1;
+        $status->update();
+        return redirect()->back();
+    }
     public function create()
     {
         //

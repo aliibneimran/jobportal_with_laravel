@@ -17,6 +17,10 @@ class Company extends Authenticatable
     {
       return $this->hasMany(Job::class); 
     }
+    public function applicant():HasMany
+    {
+      return $this->hasMany(Applicant::class); 
+    }
     
     /**
      * The attributes that are mass assignable.

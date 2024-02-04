@@ -40,10 +40,13 @@
                 </td>
                 <td>{{$item->job_id}}</td>
                 <td>
-                  @if ($item->status==0)
-                  <button class="btn btn-warning">Pending</button>
+                  @if (!$item->status==0)
+                  <button class="btn btn-success">Approve</button>
                   @else
-                  <button class="btn btn-success">Approved</button>
+                  <form action="{{route('approve',$item->id)}}" method="post">
+                    @csrf
+                    <button class="btn btn-warning" type="submit">Pending</button>
+                  </form>
                   @endif
                 </td>
                 <td>
@@ -71,7 +74,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <iframe src="{{ asset('uploads/cv/' . $item->cv) }}" width="100%" height="500px" frameborder="0"></iframe>
+          <iframe src="{{ asset('uploads/cv/') }}" width="100%" height="500px" frameborder="0"></iframe>
 
           </div>  
       </div>

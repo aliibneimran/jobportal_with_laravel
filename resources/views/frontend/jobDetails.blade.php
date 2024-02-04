@@ -152,10 +152,11 @@
           @endif
           <form class="login-register text-start mt-20 pb-30" action="{{route('apply.job',$jobs->id)}}" method="post" enctype="multipart/form-data"> 
             {{-- {{route('apply.job',$jobs->id)}} --}}
-            {{-- {{ $jobs->id }} --}}
+            {{-- {{ $jobs->company_id }} --}}
             {{-- {{Auth::guard('candidate')->user()->id }} --}}
             @csrf
             <input type="hidden" name="job_id" value="{{ $jobs->id }}">
+            <input type="hidden" name="company_id" value="{{ $jobs->company_id }}">
             <input type="hidden" name="candidate_id" value="@if(Auth::guard('candidate')->check()){{Auth::guard('candidate')->user()->id }}@endif">
             @if(Auth::guard('candidate')->check())
             <div class="form-group">

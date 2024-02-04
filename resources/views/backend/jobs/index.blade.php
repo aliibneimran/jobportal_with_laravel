@@ -30,34 +30,35 @@
               </tr>
             </thead>
             <tbody>
-            @php $no = 1 @endphp
-            @foreach ($jobs as $item)
-              <tr>
-                <td>{{$no++}}</td>
-                <td><img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px"></td>
-                <td>{{$item->title}}</td>
-                <td>{{$item->position}}</td>
-                <td>{{$item->salary}}</td>
-                <td>{{$item->vacancy}}</td>
-                <td>{{$item->location->name}}</td>
-                <td>{{$item->category->name}}</td>
-                <td>{{$item->industry->name}}</td>
-                <td>@if($item->availability == 1)Available @else Not Available @endif</td>
-                <td>
-                  <a href="{{ route('jobs.edit', $item->id) }}" class="m-2">
-                      <i class="mdi mdi-square-edit-outline"></i>
-                  </a>
-                  
-                  <form method="POST" action="{{ route('jobs.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
-                          <i class="mdi mdi-trash-can-outline"></i>
-                      </button>
-                  </form>
-                </td>              
-              </tr>
-            @endforeach
+              @php $no = 1 @endphp
+              @foreach ($jobs as $item)
+                <tr>
+                  <td>{{$no++}}</td>
+                  <td><img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px"></td>
+                  <td>{{$item->title}}</td>
+                  <td>{{$item->position}}</td>
+                  <td>{{$item->salary}}</td>
+                  <td>{{$item->vacancy}}</td>
+                  <td>{{$item->location->name}}</td>
+                  <td>{{$item->category->name}}</td>
+                  <td>{{$item->industry->name}}</td>
+                  <td>@if($item->availability == 1)Available @else Not Available @endif</td>
+                  <td>
+                    <a href="{{ route('jobs.edit', $item->id) }}" class="m-2">
+                        <i class="mdi mdi-square-edit-outline"></i>
+                    </a>
+                    
+                    <form method="POST" action="{{ route('jobs.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
+                            <i class="mdi mdi-trash-can-outline"></i>
+                        </button>
+                    </form>
+                  </td>              
+                </tr>
+              @endforeach
+              
             </tbody>
           </table>
       </div>
