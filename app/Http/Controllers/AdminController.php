@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Applicant;
+use App\Models\backend\Category;
+use App\Models\backend\Industry;
+use App\Models\backend\Job;
+use App\Models\backend\Location;
+use App\Models\Candidate;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +28,14 @@ class AdminController extends Controller
         }
     }
     public function dashboard(){
-        return view('admin.dashboard');
+        $data['totalJobs'] = Job::count();
+        $data['totalLocations'] = Location::count();
+        $data['totalIndustries'] = Industry::count();
+        $data['totalCategories'] = Category::count();
+        $data['totalCompany'] = Company::count();
+        $data['totalApplicant'] = Applicant::count();
+        $data['totalUser'] = Candidate::count();
+        return view('admin.dashboard',$data);
     }
     public function logout(){
         Auth::guard('admin')->logout();

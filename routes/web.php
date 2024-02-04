@@ -105,13 +105,25 @@ Route::prefix('candidate')->group(function(){
     Route::get('jobs', [JobListController::class, 'index'])->name('jobs')->middleware('candidate');
     Route::get('/job/details/{id}', [JobDetailsController::class, 'index'])->name('job.details');
 
+    Route::get('about', [JobListController::class, 'about'])->name('about')->middleware('candidate');
+    Route::get('contact', [JobListController::class, 'contact'])->name('contact')->middleware('candidate');
+
+
 });
 
 
 //Frontend
-Route::get('/', [HomeController::class, 'index']);
-Route::get('jobs', [JobListController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('search');
+Route::get('jobs', [JobListController::class, 'index'])->name('jobs');
 Route::get('/job/details/{id}', [JobDetailsController::class, 'index'])->name('job.details');
+
+Route::get('about', [JobListController::class, 'about'])->name('about');
+Route::get('contact', [JobListController::class, 'contact'])->name('contact');
+Route::get('blog', [JobListController::class, 'blog'])->name('blog');
+
+
+// Route::get('/search', [HomeController::class, 'index'])->name('search');
+
 
 
 

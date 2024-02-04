@@ -8,7 +8,7 @@
         <div class="container">
             <div class="banner-hero banner-single banner-single-bg">
                 <div class="block-banner text-center">
-                    <h3 class="wow animate__animated animate__fadeInUp"><span class="color-brand-2">22 Jobs</span> Available Now</h3>
+                    <h3 class="wow animate__animated animate__fadeInUp"><span class="color-brand-2">{{ $totalJobs }} Jobs</span> Available Now</h3>
                     <div class="font-sm color-text-paragraph-2 mt-10 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, <br class="d-none d-xl-block">atque delectus molestias quis?</div>
                     <div class="form-find text-start mt-40 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                         <form>
@@ -105,17 +105,9 @@
                         </div>
                     </div>
                     <div class="paginations">
-                        <ul class="pager">
-                            <li><a class="pager-prev" href="#"></a></li>
-                            <li><a class="pager-number" href="#">1</a></li>
-                            <li><a class="pager-number" href="#">2</a></li>
-                            <li><a class="pager-number" href="#">3</a></li>
-                            <li><a class="pager-number" href="#">4</a></li>
-                            <li><a class="pager-number" href="#">5</a></li>
-                            <li><a class="pager-number active" href="#">6</a></li>
-                            <li><a class="pager-number" href="#">7</a></li>
-                            <li><a class="pager-next" href="#"></a></li>
-                        </ul>
+                        {{-- {{ $jobs->links() }} --}}
+                        {{ $jobs->links('pagination::bootstrap-5') }}
+                        {{-- {!! $jobs->withQueryString()->links('pagination::bootstrap-5')!!} --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">

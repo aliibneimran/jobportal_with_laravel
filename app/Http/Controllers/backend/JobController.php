@@ -22,6 +22,7 @@ class JobController extends Controller
 
         $companyUser = Auth::guard('company')->user();
         $jobs = Job::where('company_id', $companyUser->id)->get();
+        $totalJobs = Job::count(); 
         return view('backend.jobs.index', compact('jobs'));
     }
 

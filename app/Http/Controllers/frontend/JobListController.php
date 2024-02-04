@@ -17,11 +17,12 @@ class JobListController extends Controller
      */
     public function index()
     {
-        $data['jobs'] = Job::all();
+        $data['jobs'] = Job::paginate(3);
         $data['industries'] = Industry::all();
         $data['locations'] = Location::all();
         $data['categories'] = Category::all();
         $data['company'] = Company::all();
+        $data['totalJobs'] = Job::count(); 
         return view('frontend/jobsList',$data);
     }
 

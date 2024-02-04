@@ -5,254 +5,78 @@
 <div class="content">
     <!-- Top Statistics -->
     <div class="row">
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-default card-mini">
-                <div class="card-header">
-                    <h2>$18,699</h2>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <div class="sub-title">
-                        <span class="mr-1">Sales of this year</span> |
-                        <span class="mx-1">45%</span>
-                        <i class="mdi mdi-arrow-up-bold text-success"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <div>
-                            <div id="spline-area-1"></div>
-                        </div>
-                    </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-primary d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Jobs</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalJobs}}</h3>
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-default card-mini">
-                <div class="card-header">
-                    <h2>$14,500</h2>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <div class="sub-title">
-                        <span class="mr-1">Expense of this year</span> |
-                        <span class="mx-1">50%</span>
-                        <i class="mdi mdi-arrow-down-bold text-danger"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <div>
-                            <div id="spline-area-2"></div>
-                        </div>
-                    </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-success d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Company</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalCompany}}</h3>
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-default card-mini">
-                <div class="card-header">
-                    <h2>$4199</h2>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <div class="sub-title">
-                        <span class="mr-1">Profit of this year</span> |
-                        <span class="mx-1">20%</span>
-                        <i class="mdi mdi-arrow-down-bold text-danger"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <div>
-                            <div id="spline-area-3"></div>
-                        </div>
-                    </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-info d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total User</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalUser}}</h3>
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-default card-mini">
-                <div class="card-header">
-                    <h2>$20,199</h2>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <div class="sub-title">
-                        <span class="mr-1">Revenue of this year</span> |
-                        <span class="mx-1">35%</span>
-                        <i class="mdi mdi-arrow-up-bold text-success"></i>
-                    </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-danger d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Applicant</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalApplicant}}</h3>
+                  </div>
                 </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <div>
-                            <div id="spline-area-4"></div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-secondary d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Category</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalCategories}}</h3>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-warning d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Location</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalLocations}}</h3>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-6">
+            <div class="card-body">
+                <div class="bg-dark d-flex flex-wrap p-2 text-white align-items-lg-end">
+                  <div class="d-flex flex-column m-auto">
+                    <h3 class="text-white p-2 m-auto">Total Industry</h3>
+                    <h3 class="text-white py-2 m-auto">{{$totalIndustries}}</h3>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-8">
 
-            <!-- Income and Express -->
-            <div class="card card-default">
-                <div class="card-header">
-                    <h2>Income And Expenses</h2>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-display="static">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right"
-                            aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="card-body">
-                    <div class="chart-wrapper">
-                        <div id="mixed-chart-1"></div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-        <div class="col-xl-4">
-            <!-- Current Users  -->
-            <div class="card card-default">
-                <div class="card-header">
-                    <h2>Current Users</h2>
-                    <span>Realtime</span>
-                </div>
-                <div class="card-body">
-                    <div id="barchartlg2"></div>
-                </div>
-                <div class="card-footer bg-white py-4">
-                    <a href="#" class="text-uppercase">Current Users Overview</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-4">
-            <!-- Top Customers -->
-            <div class="card card-default">
-                <div class="card-header">
-                    <h2>Top Customers</h2>
-                </div>
-                <div class="card-body">
-                    <table class="table table-borderless table-thead-border">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th class="text-right">Income</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-dark font-weight-bold">Gunter Reich</td>
-                                <td class="text-right">$2,560</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold">Anke Kirsch</td>
-                                <td class="text-right">$1,720</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold">Karolina Beer</td>
-                                <td class="text-right">$1,230</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold">Lucia Christ</td>
-                                <td class="text-right">$875</td>
-                            </tr>
-                        </tbody>
-                        <tfoot class="border-top">
-                            <tr>
-                                <td><a href="#" class="text-uppercase">See All</a></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-xl-8">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h2>Sales by Country</h2>
-                    <div id="country-sales-range" class="date-range">
-                        <i class="mdi mdi-calendar"></i>&nbsp;
-                        <span class="date-holder"></span>
-                        <i class="mdi mdi-menu-down"></i>
-                    </div>
-                </div>
-                <div class="card-body py-0">
-                    <div class="row pb-4">
-                        <div class="col-lg-7 border-right-lg">
-                            <div class="vec-map-wrapper">
-                                <div id="home-world" style="height: 100%; width: 100%;"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="chart-wrapper">
-                                <div id="horizontal-bar-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Stock Modal -->
     <div class="modal fade modal-stock" id="modal-stock" aria-labelledby="modal-stock"
         aria-hidden="true">

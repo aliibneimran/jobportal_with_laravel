@@ -10,27 +10,8 @@
             <ul class="main-menu"> 
               <li><a class="active" href="/">Home</a></li>
               <li><a href="{{route('jobs')}}">Jobs</a></li>
-              <li class="has-children"><a href="companies">Recruiters</a>
-                <ul class="sub-menu">
-                  <li><a href="companies">Recruiters</a></li>
-                  <li><a href="company-details">Company Details</a></li>
-                </ul>
-              </li>
-              {{-- <li class="has-children"><a href="about">Pages</a>
-                <ul class="sub-menu">
-                  <li><a href="about">About Us</a></li>
-                  <li><a href="pricing">Pricing Plan</a></li>
-                  <li><a href="contact">Contact Us</a></li>
-                  <li><a href="reset-password">Reset Password</a></li>
-                  <li><a href="content-protected">Content Protected</a></li>
-                </ul>
-              </li> --}}
-              <li class="has-children"><a href="blog">Blog</a>
-                <ul class="sub-menu">
-                  <li><a href="blog">Blog Grid</a></li>
-                  <li><a href="blog-details">Blog Single</a></li>
-                </ul>
-              </li>
+              <li><a href="{{route('about')}}">About</a></li>
+              <li><a href="{{route('contact')}}">Contact</a></li>
               <li class="dashboard"><a href="{{route('candidate_profile')}}">Profile</a></li>
             </ul>
           </nav>
@@ -46,38 +27,10 @@
           <nav class="nav-main-menu">
             <ul class="main-menu"> 
               <li><a class="active" href="/">Home</a></li>
-              <li><a href="jobs">Jobs</a></li>
-              <li class="has-children"><a href="companies">Recruiters</a>
-                <ul class="sub-menu">
-                  <li><a href="companies">Recruiters</a></li>
-                  <li><a href="company-details">Company Details</a></li>
-                </ul>
-              </li>
-              <li class="has-children"><a href="candidates">Candidates</a>
-                <ul class="sub-menu">
-                  <li><a href="candidates">Candidates Grid</a></li>
-                  <li><a href="candidate-details">Candidate Details</a></li>
-                  <li><a href="candidate-profile">Candidate Profile</a></li>
-                </ul>
-              </li>
-              <li class="has-children"><a href="about">Pages</a>
-                <ul class="sub-menu">
-                  <li><a href="about">About Us</a></li>
-                  <li><a href="pricing">Pricing Plan</a></li>
-                  <li><a href="contact">Contact Us</a></li>
-                  <li><a href="register">Register</a></li>
-                  <li><a href="signin">Signin</a></li>
-                  <li><a href="reset-password">Reset Password</a></li>
-                  <li><a href="content-protected">Content Protected</a></li>
-                </ul>
-              </li>
-              <li class="has-children"><a href="blog">Blog</a>
-                <ul class="sub-menu">
-                  <li><a href="blog">Blog Grid</a></li>
-                  <li><a href="blog-details">Blog Single</a></li>
-                </ul>
-              </li>
-              <li class="dashboard"><a href="/admin" target="_blank">Dashboard</a></li>
+              <li><a href="{{route('jobs')}}">Jobs</a></li>
+              <li><a href="{{route('about')}}">About Us</a></li>
+              <li><a href="{{route('contact')}}">Contact Us</a></li>
+              <li><a href="{{route('blog')}}">Blog</a></li>
             </ul>
           </nav>
           <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>

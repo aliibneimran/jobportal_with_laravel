@@ -11,6 +11,7 @@ class LocationController extends Controller
     public function index()
     {
         $data['locations'] = Location::all();
+        $data['totalLocation'] = Location::count(); 
         return view('backend.locations.index',$data);
     }
     public function create()

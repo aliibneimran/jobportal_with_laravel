@@ -19,6 +19,7 @@ class ApplicantController extends Controller
         $applicants = Applicant::where('company_id', $companyUser->id)->get();
         // return view('backend.jobs.index', compact('jobs'))
         // $applicants = Applicant::all();
+        $data['totalApplicant'] = Applicant::count(); 
         return view('backend.applications.index',compact('applicants'));
     }
     /**

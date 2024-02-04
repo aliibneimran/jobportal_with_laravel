@@ -47,5 +47,16 @@ class Job extends Model
         // return $this->attributes['tag'] = json_decode($value);
         return is_array($value) ? $value : json_decode($value, true);
     }
-    
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'description' => $this->description,
+            'salary' => $this->salary,
+            'tag' => $this->tag,
+            'category_id' => $this->category_id,
+            'location_id' => $this->location_id,
+        ];
+    }
+
 }

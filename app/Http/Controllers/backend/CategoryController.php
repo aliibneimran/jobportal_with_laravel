@@ -11,6 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data['catagories'] = Category::all();
+        $data['totalCategory'] = Category::count(); 
         return view('backend.categories.index',$data);
     }
     public function create()

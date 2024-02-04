@@ -11,6 +11,7 @@ class IndustryController extends Controller
     public function index()
     {
         $data['industries'] = Industry::all();
+        $data['totalIndutry'] = Industry::count(); 
         return view('backend.industries.index',$data);
     }
     public function create()
