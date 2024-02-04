@@ -11,7 +11,7 @@
           <h1 class="text-42 color-white wow animate__animated animate__fadeInUp">The #1 <span class="color-green">Job Board for</span><br class="d-none d-lg-block">Hiring or Find your next job</h1>
           <div class="font-lg font-regular color-white mt-20 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">Each month, more than 3 million job seekers turn to website in their search for work, making over 140,000 applications every single day</div>
           <div class="form-find mt-40 wow animate__animated animate__fadeIn" data-wow-delay=".2s">
-            <form>
+            <form name="search" value="{{ request()->get('search') }}">
               <div class="box-industry">
                 <select class="form-input mr-10 select-active input-industry" name="industry">
                   <option value="0">Industry</option>

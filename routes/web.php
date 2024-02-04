@@ -102,7 +102,7 @@ Route::prefix('candidate')->group(function(){
 
     Route::post('apply', [ApplicationController::class, 'application'])->name('apply.job')->middleware('candidate');
 
-    Route::get('jobs', [JobListController::class, 'index']);
+    Route::get('jobs', [JobListController::class, 'index'])->name('jobs')->middleware('candidate');
     Route::get('/job/details/{id}', [JobDetailsController::class, 'index'])->name('job.details');
 
 });

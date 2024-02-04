@@ -9,7 +9,7 @@
           <nav class="nav-main-menu">
             <ul class="main-menu"> 
               <li><a class="active" href="/">Home</a></li>
-              <li><a href="jobs">Jobs</a></li>
+              <li><a href="{{route('jobs')}}">Jobs</a></li>
               <li class="has-children"><a href="companies">Recruiters</a>
                 <ul class="sub-menu">
                   <li><a href="companies">Recruiters</a></li>
@@ -31,7 +31,7 @@
                   <li><a href="blog-details">Blog Single</a></li>
                 </ul>
               </li>
-              <li class="dashboard"><a href="{{URL('candidate-profile')}}">Profile</a></li>
+              <li class="dashboard"><a href="{{route('candidate_profile')}}">Profile</a></li>
             </ul>
           </nav>
           <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>

@@ -132,20 +132,24 @@
                             <div class="col-lg-6 col-md-6 col-sm-12">
                               <div class="card-grid-2-image-left">
                                 <div class="image-box"><img src="../frontend/imgs/brands/brand-5.png" alt="jobBox"></div>
-                                <div class="right-info"><a class="name-job" href="">{{$item->company->name}}</a><span class="location-small">New York, US</span></div>
+                                <div class="right-info"><a class="name-job" href="">{{$item->company->name}}</a></div>
                               </div>
                             </div>
 
                           </div>
                           <div class="card-block-info">
-                            <h4><a href="job-details.html">{{$item->job->title}}</a></h4>
-                            <div class="mt-5"><span class="card-briefcase">Fulltime</span><span class="card-time"><span>4</span><span> mins ago</span></span></div>
+                            <h4><a href="{{route('job.details',$item->id)}}">{{$item->job->title}}</a></h4>
+                            <div class="mt-5"><span class="card-briefcase">{{$item->job->category->name}}</span><span class="card-time"><span>{{$item->job->created_at}}</span></span></div>
                             <p class="font-sm color-text-paragraph mt-10">{{ Str::words($item->job->description, $words = 20, $end = '...') }}</p>
                             <div class="card-2-bottom mt-20">
                               <div class="row">
-                                <div class="col-lg-7 col-7"><span class="card-text-price">$500</span><span class="text-muted">/Hour</span></div>
+                                <div class="col-lg-7 col-7"><span class="card-text-price">{{$item->job->salary}}</span><span class="text-muted"> TK /Month</span></div>
                                 <div class="col-lg-5 col-5 text-end">
-                                  <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                  @if (!$item->status==0)
+                                  <button class="btn btn-success">Approved</button>
+                                  @else
+                                  <button class="btn btn-warning">Pending</button>
+                                  @endif
                                 </div>
                               </div>
                             </div>

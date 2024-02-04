@@ -41,7 +41,7 @@
                 <td>{{$item->job_id}}</td>
                 <td>
                   @if (!$item->status==0)
-                  <button class="btn btn-success">Approve</button>
+                  <button class="btn btn-success">Approved</button>
                   @else
                   <form action="{{route('approve',$item->id)}}" method="post">
                     @csrf
