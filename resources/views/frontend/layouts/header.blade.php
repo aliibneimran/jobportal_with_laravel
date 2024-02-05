@@ -53,59 +53,32 @@
           </div>
           <div class="mobile-menu-wrap mobile-header-border">
             <!-- mobile menu start-->
+            @if (Auth::guard('candidate')->check())
             <nav>
               <ul class="mobile-menu font-heading">
                 <li><a class="active" href="/">Home</a></li>
-                <li class="has-children"><a href="jobs">Find a Job</a>
-                  <ul class="sub-menu">
-                    <li><a href="jobs">Jobs Grid</a></li>
-                    <li><a href="job-details">Jobs Details 2 </a></li>
-                  </ul>
-                </li>
-                <li class="has-children"><a href="companies">Recruiters</a>
-                  <ul class="sub-menu">
-                    <li><a href="companies">Recruiters</a></li>
-                    <li><a href="company-details">Company Details</a></li>
-                  </ul>
-                </li>
-                <li class="has-children"><a href="candidates">Candidates</a>
-                  <ul class="sub-menu">
-                    <li><a href="candidates">Candidates Grid</a></li>
-                    <li><a href="candidate-details">Candidate Details</a></li>
-                  </ul>
-                </li>
-                <li class="has-children"><a href="about">Pages</a>
-                  <ul class="sub-menu">
-                    <li><a href="about">About Us</a></li>
-                    <li><a href="pricing">Pricing Plan</a></li>
-                    <li><a href="contact">Contact Us</a></li>
-                    <li><a href="register">Register</a></li>
-                    <li><a href="signin">Signin</a></li>
-                    <li><a href="reset-password">Reset Password</a></li>
-                    <li><a href="content-protected">Content Protected</a></li>
-                  </ul>
-                </li>
-                <li class="has-children"><a href="blog">Blog</a>
-                  <ul class="sub-menu">
-                    <li><a href="blog">Blog Grid</a></li>
-                    <li><a href="blog-details">Blog Single</a></li>
-                  </ul>
-                </li>
-                <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li>
+                <li><a href="{{route('jobs')}}">Jobs</a></li>
+                <li><a href="{{route('about')}}">About Us</a></li>
+                <li><a href="{{route('contact')}}">Contact Us</a></li>
+                <li><a href="{{route('blog')}}">Blog</a></li>
+                <li class="dashboard"><a href="{{route('candidate_profile')}}">Profile</a></li>
+                <li><a class="btn btn-danger hover-up" href="{{ route('candidate_logout') }}">Logout</a></li>
               </ul>
             </nav>
+            @else
+            <nav>
+              <ul class="mobile-menu font-heading">
+                <li><a class="active" href="/">Home</a></li>
+                <li><a href="{{route('jobs')}}">Jobs</a></li>
+                <li><a href="{{route('about')}}">About Us</a></li>
+                <li><a href="{{route('contact')}}">Contact Us</a></li>
+                <li><a href="{{route('blog')}}">Blog</a></li>
+                <li><a class="btn btn-primary btn-shadow hover-up mx-2" href="{{ route('candidate_login_form') }}">Sign in</a></li>
+                <li><a class="btn btn-success btn-shadow hover-up" href="{{route('candidate_register')}}">Sign Up</a></li>
+              </ul>
+            </nav>
+            @endif
           </div>
-          <div class="mobile-account">
-            <h6 class="mb-10">Your Account</h6>
-            <ul class="mobile-menu font-heading">
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Work Preferences</a></li>
-              <li><a href="#">Account Settings</a></li>
-              <li><a href="#">Go Pro</a></li>
-              <li><a href="signin">Sign Out</a></li>
-            </ul>
-          </div>
-          <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div>
         </div>
       </div>
     </div>

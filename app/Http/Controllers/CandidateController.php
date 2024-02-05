@@ -62,37 +62,54 @@ class CandidateController extends Controller
     
     public function updateProfile(Request $request){
 
-    $candidate = Candidate::findOrFail(Auth::guard('candidate')->user()->id);
-    $data = [
-        'name' => $request->name,
-        'email' => $request->email,
-    ];
-    $candidate->update($data);
-    
-    $validate = $request->validate([
-        'photo' => 'mimes:jpg,jpeg,png'
-    ]);
-    $filename = time() . '.' . $request->photo->extension();
-    if($validate){
-        $details = [
-            'contact' => $request->contact,
-            'bio' => $request->bio,
-            'address' => $request->address,
-            'candidate_id' => $request->candidate_id,
-            'image' => $filename,
-        ];
-    }
-    // if(CandidateDetails::create($details)) {
-    //     $request->photo->move('uploads', $filename);
-    // }
-    $candidateDetails = CandidateDetails::where('candidate_id', Auth::guard('candidate')->user()->id)->first();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'old_password' => 'nullable|string|min:6', 
+            'new_password' => 'nullable|string|min:6|confirmed',
+            'new_password_confirmation' => 'required_with:new_password|min:6',
+        ]);               
+        
+        $candidate = Candidate::findOrFail(Auth::guard('candidate')->user()->id);
+        
+        if ($request->filled('old_password')) {
+            // Use Hash::check for comparison
+            if (!Hash::check($request->old_password, Auth::guard('candidate')->user()->password)) {
+                return redirect()->back()->withErrors(['old_password' => 'Incorrect old password']);
+            }
+        }
+        
+        // Continue with the update
+        $candidate->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->filled('new_password') ? Hash::make($request->new_password) : $candidate->password,
+        ]);
+        
+        
+        $validate = $request->validate([
+            'photo' => 'nullable|mimes:jpg,jpeg,png'
+        ]);
+        $filename = time() . '.' . $request->photo->extension();
+        if($validate){
+            $details = [
+                'contact' => $request->contact,
+                'bio' => $request->bio,
+                'address' => $request->address,
+                'candidate_id' => $request->candidate_id,
+                'image' => $filename,
+            ];
+        }
+        $candidateDetails = CandidateDetails::where('candidate_id', Auth::guard('candidate')->user()->id)->first();
 
-    if (!$candidateDetails) {
-        CandidateDetails::create($details);
-    } else {
-        $candidateDetails->update($details);
+        if (!$candidateDetails) {
+            CandidateDetails::create($details);
+        } else {
+            $candidateDetails->update($details);
+        }
+        $request->photo->move('uploads', $filename);
+        return redirect()->route('candidate_profile')->with('msg', 'Profile successfully updated');
     }
-    $request->photo->move('uploads', $filename);
-    return redirect()->route('candidate_profile')->with('msg', 'Profile successfully updated');
-    }
+
+
 }

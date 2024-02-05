@@ -39,7 +39,15 @@
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="tab-my-profile" role="tabpanel" aria-labelledby="tab-my-profile">
                     <h3 class="mt-0 mb-15 color-brand-1">My Account</h3><a class="font-md color-text-paragraph-2" href="#">Update your profile</a>
-                    
+                    @if ($errors->any())
+                      <div class="alert alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                      </div>
+                    @endif
                   <form method="post" action="{{route('candidate.update.profile')}}" enctype="multipart/form-data">
                     @csrf
                     @if (Auth::guard('candidate')->check())
@@ -71,28 +79,22 @@
                           <textarea name="address" class="form-control">{{ $canDetails->address ?? ''}}</textarea>
                         </div>
                         
-                        {{-- <div class="border-bottom pt-10 pb-10 mb-30"></div>
+                        <div class="border-bottom pt-10 pb-10 mb-30"></div>
                         <h6 class="color-orange mb-20">Change your password</h6>
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="font-sm color-text-mutted mb-10">Password</label>
-                              <input class="form-control" type="password" value="123456789">
-                            </div>
-                          </div>
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="font-sm color-text-mutted mb-10">Re-Password *</label>
-                              <input class="form-control" type="password" value="123456789">
-                            </div>
-                          </div>
+                        <div class="form-group">
+                          <label class="font-sm color-text-mutted mb-10">Old Password</label>
+                          <input class="form-control" type="password" name="old_password" value="">
+                        </div>
+                        <div class="form-group">
+                          <label class="font-sm color-text-mutted mb-10">New Password *</label>
+                          <input class="form-control" type="password" name="new_password" value="">
+                        </div>
+                        <div class="form-group">
+                          <label class="font-sm color-text-mutted mb-10">Re-Password *</label>
+                          <input class="form-control" type="password" name="new_password_confirmation" value="">
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
-                        <div class="box-agree mt-30">
-                          <label class="lbl-agree font-xs color-text-paragraph-2">
-                            <input class="lbl-checkbox" type="checkbox" value="1" name="availability[]">Available for freelancers
-                          </label>
-                        </div> --}}
+                        
                         <input type="hidden" name="candidate_id" value="@if (Auth::guard('candidate')->check())
                         {{ Auth::guard('candidate')->user()->id }}@endif">
                         <div class="box-button mt-15">
