@@ -14,17 +14,7 @@
             <ul class="nav sidebar-inner" id="sidebar-menu">
                 <li class="active"><a class="sidenav-item-link" href="index.html"><i class="mdi mdi-briefcase-account-outline"></i><span class="nav-text">Admin Dashboard</span></a>
                 </li>
-                {{-- Jobs --}}
-                <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#job" aria-expanded="false" aria-controls="email"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Jobs</span><b class="caret"></b>
-                    </a>
-                    <ul class="collapse" id="job" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-                            <li><a class="sidenav-item-link"href="email-inbox.html"><span class="nav-text">All Jobs</span></a></li>
-                            <li><a class="sidenav-item-link" href="email-details.html"><span class="nav-text">Add Job</span></a></li>
-                        </div>
-                    </ul>
-                </li>
+                <li><a class="sidenav-item-link" href="{{route('all-jobs')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Jobs</span></a></li>
                 {{-- Category --}}
                 <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#category" aria-expanded="false" aria-controls="email"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Categories</span><b class="caret"></b>

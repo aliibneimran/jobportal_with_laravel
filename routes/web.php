@@ -13,6 +13,7 @@ use App\Http\Controllers\frontend\CandidateDetailController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\JobDetailsController;
 use App\Http\Controllers\frontend\JobListController;
+use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,9 @@ Route::prefix('admin')->group(function(){
     Route::get('industries/edit/{id}',[IndustryController::class,'edit'])->name('industries.edit')->middleware('admin');
     Route::post('industries/update/{id}',[IndustryController::class,'update'])->name('industries.update')->middleware('admin');
     Route::get('industries/delete/{id}',[IndustryController::class,'delete'])->name('industries.delete')->middleware('admin');
+
+    Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
+
 });
 
 //Company Middleware
@@ -122,7 +126,9 @@ Route::get('contact', [JobListController::class, 'contact'])->name('contact');
 Route::get('blog', [JobListController::class, 'blog'])->name('blog');
 
 
-// Route::get('/search', [HomeController::class, 'index'])->name('search');
+Route::get('search', [SearchController::class, 'index'])->name('search');
+
+
 
 
 

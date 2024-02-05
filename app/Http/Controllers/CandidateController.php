@@ -26,7 +26,7 @@ class CandidateController extends Controller
     }
     public function profile(){
         $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
-        $application = Applicant::all();
+        $application = Applicant::paginate(3);
         return view('frontend.candidate.profile',compact('canDetails','application'));
     }
     public function logout(){

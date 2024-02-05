@@ -17,13 +17,24 @@ class JobController extends Controller
      */
     public function index()
     {
-        // $jobs = Job::all()->where(Auth::guard('company')->user()->id);
-        // return view('backend.jobs.index',compact('jobs'));
+        $user = Auth::guard('company')->user();
 
-        $companyUser = Auth::guard('company')->user();
-        $jobs = Job::where('company_id', $companyUser->id)->get();
-        $totalJobs = Job::count(); 
+        if ($user) {
+            $jobs = Job::where('company_id', $user->id)->get();
+        } elseif (Auth::guard('admin')->check()) {
+            $jobs = Job::all();
+        } else {
+            $jobs = [];
+        }
+    
+        $totalJobs = Job::count();
         return view('backend.jobs.index', compact('jobs'));
+
+        // $companyUser = Auth::guard('company')->user();
+        // $jobs = Job::where('company_id', $companyUser->id)->get();
+
+        // $totalJobs = Job::count(); 
+        // return view('backend.jobs.index', compact('jobs'));
     }
 
     /**

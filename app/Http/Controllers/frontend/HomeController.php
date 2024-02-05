@@ -34,8 +34,8 @@ class HomeController extends Controller
         // return view('frontend/home', compact('jobs','locations','industries','categories'));
 
         $data['locations'] = Location::with('job')->get();
-        $data['jobs'] = Job::latest()->take(3)->get();
-        $data['locations'] = Location::latest()->take(4)->get();
+        $data['jobs'] = Job::paginate(3);
+        $data['locations'] = Location::paginate(4);
         $data['industries'] = Industry::all();
         $data['categories'] = Category::all();
         return view('frontend/home',$data);

@@ -1833,7 +1833,7 @@ label {
   border-radius: 8px;
   border: 1px solid #E0E6F7;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   position: relative;
   background: #F8FAFF;
 }
@@ -2048,7 +2048,7 @@ label {
   background: url(../imgs/template/icons/flash.svg) no-repeat 0px 0px;
 }
 .card-grid-2 .card-grid-2-image-left {
-  padding: 30px 20px 15px 20px;
+  padding: 30px 20px 5px 20px;
   display: flex;
   position: relative;
 }
@@ -2819,7 +2819,7 @@ ul li:last-child .card-list-4 {
   width: 100%;
 }
 .banner-hero .block-banner .form-find .btn-find {
-  min-width: 122px;
+  min-width: 100px;
   padding-left: 34px;
   padding-right: 15px;
   background-image: url(../imgs/page/homepage1/search-icon.svg);

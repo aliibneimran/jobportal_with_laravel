@@ -160,17 +160,9 @@
                       @endforeach   
                     </div>
                     <div class="paginations">
-                      <ul class="pager">
-                        <li><a class="pager-prev" href="#"></a></li>
-                        <li><a class="pager-number" href="#">1</a></li>
-                        <li><a class="pager-number" href="#">2</a></li>
-                        <li><a class="pager-number" href="#">3</a></li>
-                        <li><a class="pager-number" href="#">4</a></li>
-                        <li><a class="pager-number" href="#">5</a></li>
-                        <li><a class="pager-number active" href="#">6</a></li>
-                        <li><a class="pager-number" href="#">7</a></li>
-                        <li><a class="pager-next" href="#"></a></li>
-                      </ul>
+                      {{-- {{ $jobs->links() }} --}}
+                      {{ $application->links('pagination::bootstrap-5') }}
+                      {{-- {!! $jobs->withQueryString()->links('pagination::bootstrap-5')!!} --}}
                     </div>
                   </div>
                   <div class="tab-pane fade" id="tab-saved-jobs" role="tabpanel" aria-labelledby="tab-saved-jobs">

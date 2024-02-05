@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
+use App\Models\backend\Job;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,12 @@ class CompanyController extends Controller
         }
     }
     public function dashboard(){
-        return view('company.dashboard');
+        $data['totalJobs'] = Job::where('company_id', Auth::guard('company')->user()->id)->count();
+        $data['totalApplicant'] = Applicant::where('company_id', Auth::guard('company')->user()->id)->count();
+        $data['totalApprove'] = Applicant::where('company_id', Auth::guard('company')->user()->id)->where('status', 1)->count();
+        $data['totalPending'] = Applicant::where('company_id', Auth::guard('company')->user()->id)->where('status', 0)->count();
+
+        return view('company.dashboard',$data);
     }
     public function logout(){
         Auth::guard('company')->logout();

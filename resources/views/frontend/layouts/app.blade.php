@@ -16,6 +16,9 @@
   <link href="{{asset('frontend/css/style.css?version=4.1')}}" rel="stylesheet">
   <title>@yield('title')</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 
 <body>
@@ -54,7 +57,27 @@
   <script src="{{asset('frontend/js/plugins/swiper-bundle.min.js')}}"></script>
   <script src="{{asset('frontend/js/plugins/counterup.js')}}"></script>
   <script src="{{asset('frontend/js/main.js?v=4.1')}}"></script>
-  
+  <script>
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            // e.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('search') }}',
+                data: formData,
+                success: function (data) {
+                    $('#search-results').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
