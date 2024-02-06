@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Applicant;
 use App\Models\backend\Job;
 use App\Models\Company;
+use App\Models\CompanyDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,5 +49,10 @@ class CompanyController extends Controller
 
         return redirect()->route('company_dashboard');
         
+    }
+    public function profile(){
+        $canDetails = CompanyDetails::all()->where('company_id', Auth::guard('company')->user()->id)->first();
+        return view('company.profile');
+        //,compact('comDetails')
     }
 }

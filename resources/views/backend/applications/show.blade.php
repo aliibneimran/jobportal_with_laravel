@@ -38,7 +38,8 @@
                 <td>{{$item->contact}}</td>
                 <td>{{$item->email}}</td>
                 <td>
-                  <a href="" class="open-modal" data-id="{{$item->id}}" data-toggle="modal" data-target="#fileModal"><i class="mdi mdi-eye"></i></a>
+                  <a href="{{route('applications.show',$item->id) }}" class="view-cv-link" data-bs-toggle="modal" data-bs-target="#fileModal" data-cv="{{ $item->cv }}"><i class="mdi mdi-eye"></i></a>
+                  {{-- <a href="#" class="open-modal" data-toggle="modal" data-target="#fileModal" data-id="{{$item->id}}"><i class="mdi mdi-eye"></i></a> --}}
                 </td>
                 <td>{{$item->job_id}}</td>
                 <td>
@@ -75,7 +76,7 @@
               <h5 class="modal-title" id="fileModalLabel">File Viewer</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" id="modalContent">
+          <div class="modal-body">
             {{$item->id}}
           </div>  
       </div>

@@ -76,10 +76,15 @@ Route::prefix('company')->group(function(){
     Route::get('register',[CompanyController::class,'register'])->name('company_register');
     Route::post('register/create',[CompanyController::class,'registration'])->name('company.register.create');
 
+    Route::get('profile',[CompanyController::class,'profile'])->name('company_profile')->middleware('company');
+
+
     //jobs
 
     Route::resource('jobs', JobController::class)->middleware('company');
     Route::resource('applications', ApplicantController::class)->middleware('company');
+    
+    Route::get('cv/{id}', [ApplicantController::class,'show'])->name('cv.show');
 
     Route::post('approve/{id}',[ApplicantController::class,'approve'])->name('approve')->middleware('company');
 

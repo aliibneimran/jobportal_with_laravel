@@ -108,6 +108,7 @@
                         @endif
                       </span>
                   </button>
+        @if (Auth::guard('admin')->check())
                   <ul class="dropdown-menu dropdown-menu-right">
                       <li>
                           <a class="dropdown-link-item" href="user-profile.html">
@@ -135,15 +136,41 @@
                           </a>
                       </li>
                       <li class="dropdown-footer">
-                          <a href="@if (Auth::guard('admin')->check())
-                                {{ route('admin_logout')}}
-                            @elseif(Auth::guard('company')->check())
-                                {{ route('company_logout') }}
-                            @endif" class="dropdown-link-item">
-                              <i class="mdi mdi-logout"></i> Log Out
-                          </a>
+                          <a href="{{ route('admin_logout')}}" class="dropdown-link-item"><i class="mdi mdi-logout"></i> Log Out</a>
                       </li>
                   </ul>
+        @elseif (Auth::guard('company')->check())
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li>
+                <a class="dropdown-link-item" href="{{route('company_profile')}}">
+                    <i class="mdi mdi-account-outline"></i>
+                    <span class="nav-text">My Profile</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-link-item" href="email-inbox.html">
+                    <i class="mdi mdi-email-outline"></i>
+                    <span class="nav-text">Message</span>
+                    <span class="badge badge-pill badge-primary">24</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-link-item" href="user-activities.html">
+                    <i class="mdi mdi-diamond-stone"></i>
+                    <span class="nav-text">Activitise</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-link-item" href="user-account-settings.html">
+                    <i class="mdi mdi-settings"></i>
+                    <span class="nav-text">Account Setting</span>
+                </a>
+            </li>
+            <li class="dropdown-footer">
+                <a href="{{ route('company_logout')}}" class="dropdown-link-item"><i class="mdi mdi-logout"></i> Log Out</a>
+            </li>
+        </ul>
+        @endif
               </li>
           </ul>
       </div>

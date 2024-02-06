@@ -50,9 +50,8 @@ class ApplicantController extends Controller
      */
     public function show(string $id)
     {
-        // $applicants = Applicant::find($id);
-        // return view('backend.applications.index',compact('applicants'));
-
+        $applicants = Applicant::find($id);
+        return view('backend.applications.index',compact('applicants'));
     }
 
     /**

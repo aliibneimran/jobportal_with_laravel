@@ -2,10 +2,18 @@
   <div id="sidebar" class="sidebar sidebar-with-footer">
       <!-- Aplication Brand -->
       <div class="app-brand">
-          <a href="/index.html">
+        @if (Auth::guard('admin')->check())
+            <a href="{{route('admin_dashboard')}}">
+                <img src="{{asset('assets/images/logo.png')}}" alt="Mono" />
+                <span class="brand-name">MONO</span>
+            </a>
+
+        @elseif(Auth::guard('company')->check())
+          <a href="{{route('company_dashboard')}}">
               <img src="{{asset('assets/images/logo.png')}}" alt="Mono" />
               <span class="brand-name">MONO</span>
           </a>
+        @endif
       </div>
       <!-- begin sidebar scrollbar -->
       <div class="sidebar-left" data-simplebar style="height: 100%">

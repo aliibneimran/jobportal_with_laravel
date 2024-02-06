@@ -13,6 +13,10 @@ use Laravel\Sanctum\HasApiTokens;
 class Company extends Authenticatable
 {
     use HasFactory,HasApiTokens, Notifiable;
+    public function companyDetails():HasMany
+    {
+      return $this->hasMany(CompanyDetails::class); 
+    }
     public function job():HasMany
     {
       return $this->hasMany(Job::class); 
