@@ -65,27 +65,24 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'old_password' => 'nullable|string|min:6', 
-            'new_password' => 'nullable|string|min:6|confirmed',
-            'new_password_confirmation' => 'required_with:new_password|min:6',
+            'old_password' => 'required|string|min:6', 
+            'new_password' => 'required|string|min:6',
+            'password_confirmation' => 'same:new_password|min:6',
         ]);               
         
         $candidate = Candidate::findOrFail(Auth::guard('candidate')->user()->id);
         
         if ($request->filled('old_password')) {
-            // Use Hash::check for comparison
             if (!Hash::check($request->old_password, Auth::guard('candidate')->user()->password)) {
                 return redirect()->back()->withErrors(['old_password' => 'Incorrect old password']);
             }
         }
-        
-        // Continue with the update
         $candidate->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->filled('new_password') ? Hash::make($request->new_password) : $candidate->password,
         ]);
-        
+
         
         $validate = $request->validate([
             'photo' => 'nullable|mimes:jpg,jpeg,png'

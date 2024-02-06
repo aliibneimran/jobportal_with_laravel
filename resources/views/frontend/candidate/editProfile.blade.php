@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group">
                           <label class="font-sm color-text-mutted mb-10">Re-Password *</label>
-                          <input class="form-control" type="password" name="new_password_confirmation" value="">
+                          <input class="form-control" type="password" name="password_confirmation" value="">
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
                         

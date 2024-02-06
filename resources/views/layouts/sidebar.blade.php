@@ -12,7 +12,7 @@
           <!-- sidebar menu -->
             @if (Auth::guard('admin')->check())
             <ul class="nav sidebar-inner" id="sidebar-menu">
-                <li class="active"><a class="sidenav-item-link" href="index.html"><i class="mdi mdi-briefcase-account-outline"></i><span class="nav-text">Admin Dashboard</span></a>
+                <li class="active"><a class="sidenav-item-link" href="{{route('admin_dashboard')}}"><i class="mdi mdi-briefcase-account-outline"></i><span class="nav-text">Admin Dashboard</span></a>
                 </li>
                 <li><a class="sidenav-item-link" href="{{route('all-jobs')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Jobs</span></a></li>
                 {{-- Category --}}
@@ -53,7 +53,7 @@
             @elseif(Auth::guard('company')->check())
 
             <ul class="nav sidebar-inner" id="sidebar-menu">
-                <li class="active"><a class="sidenav-item-link" href="index.html"><i class="mdi mdi-briefcase-account-outline"></i><span class="nav-text">Company Dashboard</span></a>
+                <li class="active"><a class="sidenav-item-link" href="{{route('company_dashboard')}}"><i class="mdi mdi-briefcase-account-outline"></i><span class="nav-text">Company Dashboard</span></a>
                 </li>
                 {{-- Jobs --}}
                 <li class="has-sub">

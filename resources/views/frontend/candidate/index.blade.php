@@ -15,6 +15,15 @@
                 <button class="btn social-login hover-up mb-20"><img src="../frontend/imgs/template/icons/icon-google.svg" alt="jobbox"><strong>Sign in with Google</strong></button>
                 <div class="divider-text-center"><span>Or continue with</span></div>
               </div>
+              @if ($errors->any())
+                      <div class="alert alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                      </div>
+                    @endif
               <form class="login-register text-start mt-20" action="{{route('candidate_login')}}" method="POST">
                 @csrf
                 <div class="form-group">
