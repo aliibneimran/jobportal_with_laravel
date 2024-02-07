@@ -73,9 +73,8 @@
 
         <div class="card-body">
           
-          {{-- <form> --}}
+          <form>
             <div class="row">
-              
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="lastName">Name</label>
@@ -88,14 +87,37 @@
                   <input type="email" class="form-control" id="email" />
                 </div>
               </div>
-              
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="newPassword">New password</label>
+                  <input type="password" class="form-control" id="newPassword"/>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="conPassword">Confirm password</label>
+                  <input type="password" class="form-control" id="conPassword"/>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="email">Profile Photo</label>
+                  <input type="file" class="form-control" id="coverImage"required/>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="email">Cover Photo</label>
+                  <input type="file" class="form-control" id="coverImage"required/>
+                </div>
+              </div>
               <div class="m-auto p-4">
                 <button type="submit" class="btn btn-primary mb-2 btn-pill">
-                  Edit Profile
+                  Update Profile
                 </button>
               </div>
             </div>
-          {{-- </form> --}}
+          </form>
         </div>
       </div>
     </div>
