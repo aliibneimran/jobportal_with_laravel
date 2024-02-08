@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('company_details', function (Blueprint $table) {
             $table->id();
+            $table->string('type',20)->nullable();
             $table->string('contact',20)->nullable();
             $table->string('address',300)->nullable();
             $table->string('image',50)->nullable();
+            $table->string('cover_image',50)->nullable();
             $table->text('bio')->nullable();
             $table->integer('company_id');
             $table->timestamp('created_at')->useCurrent();

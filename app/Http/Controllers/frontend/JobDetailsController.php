@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Applicant;
 use App\Models\backend\Category;
 use App\Models\backend\Job;
 use App\Models\backend\Location;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobDetailsController extends Controller
 {
@@ -16,6 +18,10 @@ class JobDetailsController extends Controller
      */
     public function index($id)
     {
+        $candidateId = Auth::guard('candidate')->user()->id;
+        $data['application'] = Applicant::where('candidate_id', $candidateId)->where('job_id', $id)->first();
+
+        $data['apply'] = Applicant::where('candidate_id', Auth::guard('candidate')->user()->id)->exists();
         $data['jobs'] = Job::find($id);
         $data['locations'] = Location::all();
         $data['categories'] = Category::all();

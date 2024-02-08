@@ -5,13 +5,13 @@
 <div class="content">
   <!-- Card Profile -->
   <div class="card card-default card-profile">
-    <div class="card-header-bg" style="background-image: url({{asset('assets/images/user/user-bg-01.jpg')}})"></div>
+    <div class="card-header-bg" style="background-image: url({{asset('uploads/'.($comDetails->cover_image ?? ''))}})"></div>
 
     <div class="card-body card-profile-body">
       <div class="profile-avata">
-        <img class="rounded-circle" src="{{asset('assets/images/user/user-md-01.jpg')}}" alt="Avata Image"/>
-        <a class="h5 d-block mt-3 mb-2" href="#">Albrecht Straub</a>
-        <a class="d-block text-color" href="#">albercht@example.com</a>
+        <img class="rounded-circle" src="{{asset('uploads/'.($comDetails->image ?? ''))}}" alt="Image" width="100" height="100"/>
+        <a class="h5 d-block mt-3 mb-2" href="#">{{ Auth::guard('company')->user()->name }}</a>
+        <a class="d-block text-color" href="#">{{ Auth::guard('company')->user()->email }}</a>
       </div>
     </div>
 
@@ -70,32 +70,61 @@
         <div class="card-header">
           <h2 class="mb-5">Account Settings</h2>
         </div>
-
+        <!-- Success Message -->
+        @if (session('msg'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('msg') }}
+        </div>
+        @endif
         <div class="card-body">
-          
-          {{-- <form> --}}
+          <form>
             <div class="row">
-              
+              @if (Auth::guard('company')->check())
+                  
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="lastName">Name</label>
-                  <input type="text" class="form-control" id="lastName"/>
+                  <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ Auth::guard('company')->user()->name }}"/>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="lastName">Type</label>
+                  <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ $comDetails->type ?? '' }}"/>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="lastName">Phone</label>
+                  <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ $comDetails->contact ?? '' }}"/>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" />
+                  <input type="text" class="form-control" disabled="disabled" value="{{ Auth::guard('company')->user()->email }}" />
                 </div>
               </div>
-              
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="lastName">Address</label>
+                  <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ $comDetails->address ?? '' }}"/>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="lastName">Bio</label>
+                  <textarea name="" class="form-control aria-disabled" @disabled(true)>{{ $comDetails->bio ?? '' }}</textarea>
+                </div>
+              </div>
+              @endif
               <div class="m-auto p-4">
-                <button type="submit" class="btn btn-primary mb-2 btn-pill">
+                <a href="{{route('company.edit.profile')}}" type="submit" class="btn btn-primary mb-2 btn-pill">
                   Edit Profile
-                </button>
+                </a>
               </div>
             </div>
-          {{-- </form> --}}
+          </form>
         </div>
       </div>
     </div>

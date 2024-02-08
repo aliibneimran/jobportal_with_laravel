@@ -24,11 +24,6 @@ class CandidateController extends Controller
             return redirect()->back()->with('msg','Please enter currect email and password');
         }
     }
-    public function profile(){
-        $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
-        $application = Applicant::paginate(3);
-        return view('frontend.candidate.profile',compact('canDetails','application'));
-    }
     public function logout(){
         Auth::guard('candidate')->logout();
         return redirect()->route('candidate_login_form');
@@ -54,6 +49,11 @@ class CandidateController extends Controller
         // Mail::to('aliibneimran1996@gmail.com')->send(new DemoMail($mailData));
         return redirect()->route('candidate_profile');
         
+    }
+    public function profile(){
+        $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();
+        $application = Applicant::paginate(3);
+        return view('frontend.candidate.profile',compact('canDetails','application'));
     }
     public function editProfile(){
         $canDetails = CandidateDetails::all()->where('candidate_id', Auth::guard('candidate')->user()->id)->first();

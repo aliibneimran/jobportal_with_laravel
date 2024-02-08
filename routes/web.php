@@ -77,6 +77,10 @@ Route::prefix('company')->group(function(){
     Route::post('register/create',[CompanyController::class,'registration'])->name('company.register.create');
 
     Route::get('profile',[CompanyController::class,'profile'])->name('company_profile')->middleware('company');
+    Route::get('edit-profile', [CompanyController::class, 'editProfile'])->name('company.edit.profile')->middleware('company');
+    Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
+
+
 
 
     //jobs

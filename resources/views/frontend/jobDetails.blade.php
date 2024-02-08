@@ -69,15 +69,20 @@
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     @if (Auth::guard('candidate')->check())
-                                    <a class="btn btn-default mr-15" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</a>
-                                    <a class="btn btn-border" href="#">Save job</a>
+                                        @if ($application)
+                                            <button class="btn btn-danger mr-15">Already Applied</button>
+                                        @else
+                                            <a class="btn btn-default mr-15" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply Now</a>
+                                            
+                                        @endif
+                                    <a class="btn btn-border" href="#">Save Job</a>
                                     @else
                                     <a class="btn btn-primary btn-shadow hover-up mx-2" href="{{ route('candidate_login_form') }}">Please Sign in First</a>
                                     @endif
                                 </div>
-                                <div class="col-md-7 text-lg-end social-share">
+                                <div class="col-md-6 text-lg-end social-share">
                                     <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-fb.svg')}}"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-tw.svg')}}"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-red.svg')}}"></a><a class="d-inline-block d-middle" href="#"><img alt="jobBox" src="{{asset('frontend/imgs/template/icons/share-whatsapp.svg')}}"></a>
                                 </div>
                             </div>
@@ -151,9 +156,6 @@
             </div>
           @endif
           <form class="login-register text-start mt-20 pb-30" action="{{route('apply.job',$jobs->id)}}" method="post" enctype="multipart/form-data"> 
-            {{-- {{route('apply.job',$jobs->id)}} --}}
-            {{-- {{ $jobs->company_id }} --}}
-            {{-- {{Auth::guard('candidate')->user()->id }} --}}
             @csrf
             <input type="hidden" name="job_id" value="{{ $jobs->id }}">
             <input type="hidden" name="company_id" value="{{ $jobs->company_id }}">

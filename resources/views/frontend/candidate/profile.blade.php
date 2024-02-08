@@ -17,12 +17,14 @@
               <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-preview-icon btn-apply btn-apply-big" href="page-contact.html">Preview</a></div>
             </div>
           </div>
-          <div class="border-bottom pt-10 pb-10"><!-- Success Message -->
+          <div class="border-bottom pt-10 pb-10">
+            <!-- Success Message -->
             @if (session('msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('msg') }}
             </div>
-            @endif</div>
+            @endif
+          </div>
         </div>
       </section>
       <section class="section-box mt-50">
@@ -77,28 +79,6 @@
                           <input class="form-control" type="url" value="{{ $canDetails->address ?? ''}}" name="address">
                         </div>
                         
-                        {{-- <div class="border-bottom pt-10 pb-10 mb-30"></div>
-                        <h6 class="color-orange mb-20">Change your password</h6>
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="font-sm color-text-mutted mb-10">Password</label>
-                              <input class="form-control" type="password" value="123456789">
-                            </div>
-                          </div>
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="font-sm color-text-mutted mb-10">Re-Password *</label>
-                              <input class="form-control" type="password" value="123456789">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="border-bottom pt-10 pb-10"></div>
-                        <div class="box-agree mt-30">
-                          <label class="lbl-agree font-xs color-text-paragraph-2">
-                            <input class="lbl-checkbox" type="checkbox" value="1" name="availability[]">Available for freelancers
-                          </label>
-                        </div> --}}
                         <div class="box-button mt-15">
                           <a href="{{route('candidate.edit.profile')}}" class="btn btn-apply-big font-md font-bold" type="submit">Edit</a>
                         </div>

@@ -7,14 +7,17 @@ use App\Models\Applicant;
 use App\Models\Candidate;
 use App\Models\frontend\ApplicationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
     public function application(Request $request){
         // dd($request->all());
+        
         $validate = $request->validate([
             'cv' => 'mimes:pdf'
         ]);
+
         $filename = time() . '.' . $request->cv->extension();
         if ($validate) {
             $data = [

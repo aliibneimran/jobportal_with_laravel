@@ -31,7 +31,6 @@ class Company extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guard = 'company';
     protected $fillable = [
         'name',
         'email',
