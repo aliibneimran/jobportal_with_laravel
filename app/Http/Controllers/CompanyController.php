@@ -56,7 +56,7 @@ class CompanyController extends Controller
     }
     public function editProfile(){
         $comDetails = CompanyDetails::all()->where('company_id', Auth::guard('company')->user()->id)->first();
-        return view('company.editProfile');
+        return view('company.editProfile',compact('comDetails'));
     } 
     
     public function updateProfile(Request $request){
@@ -83,32 +83,40 @@ class CompanyController extends Controller
         ]);
 
         
-        $validate = $request->validate([
+        $request->validate([
             'profile' => 'nullable|mimes:jpg,jpeg,png',
-            'cover' => 'nullable|mimes:jpg,jpeg,png'
+            'cover' => 'nullable|mimes:jpg,jpeg,png',
         ]);
-        $profile = time() . '.' . $request->profile->extension();
-        $cover = time() . '.' . $request->cover->extension();
-        if($validate){
-            $details = [
-                'contact' => $request->contact,
-                'type' => $request->type,
-                'bio' => $request->bio,
-                'address' => $request->address,
-                'company_id' => $request->company_id,
-                'image' => $profile,
-                'cover_image' => $cover,
-            ];
+        
+        $details = [
+            'contact' => $request->contact,
+            'type' => $request->type,
+            'bio' => $request->bio,
+            'address' => $request->address,
+            'company_id' => $request->company_id,
+        ];
+        
+        if ($request->hasFile('profile')) {
+            $profile = time() . '.' . $request->file('profile')->extension();
+            $details['image'] = $profile;
+            $request->file('profile')->move('uploads', $profile);
         }
+        
+        if ($request->hasFile('cover')) {
+            $cover = time() . '.' . $request->file('cover')->extension();
+            $details['cover_image'] = $cover;
+            $request->file('cover')->move('uploads', $cover);
+        }
+        
         $companyDetails = CompanyDetails::where('company_id', Auth::guard('company')->user()->id)->first();
-
+        
         if (!$companyDetails) {
             CompanyDetails::create($details);
         } else {
             $companyDetails->update($details);
         }
-        $request->profile->move('uploads', $profile);
-        $request->cover->move('uploads', $cover);
+        
         return redirect()->route('company_profile')->with('msg', 'Profile successfully updated');
+        
     }
 }

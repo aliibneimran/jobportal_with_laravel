@@ -5,11 +5,13 @@
 <div class="content">
   <!-- Card Profile -->
   <div class="card card-default card-profile">
-    <div class="card-header-bg" style="background-image: url({{asset('uploads/'.($comDetails->cover_image ?? ''))}})"></div>
+    <div class="card-header-bg">
+      <img src="{{asset('uploads/'.($comDetails->cover_image ?? ''))}}" alt="Image" width="100%" height="100%"/>
+    </div>
 
     <div class="card-body card-profile-body">
       <div class="profile-avata">
-        <img class="rounded-circle" src="{{asset('uploads/'.($comDetails->image ?? ''))}}" alt="Image" width="100" height="100"/>
+        <img class="rounded-circle" src="{{asset('uploads/'.($comDetails->image ?? ''))}}" alt="Image" width="150" height="150"/>
         <a class="h5 d-block mt-3 mb-2" href="#">{{ Auth::guard('company')->user()->name }}</a>
         <a class="d-block text-color" href="#">{{ Auth::guard('company')->user()->email }}</a>
       </div>
