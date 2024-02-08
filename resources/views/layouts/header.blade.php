@@ -102,11 +102,12 @@
                     @if (Auth::guard('admin')->check())
                       <img src="{{asset('assets/images/user/user-xs-01.jpg')}}" class="user-image rounded-circle" alt="Admin"/>
                       <span class="d-none d-lg-inline-block">{{ Auth::guard('admin')->user()->name }}</span>
-                    @elseif(Auth::guard('company')->check())
+                    @elseif (Auth::guard('company')->check())
                         <img src="{{asset('uploads/'.($comDetails->image ?? ''))}}" class="user-image rounded-circle" alt="Image" width="30" height="30"/>
                       <span class="d-none d-lg-inline-block">{{ Auth::guard('company')->user()->name }}</span>
                     @endif
                   </button>
+
         @if (Auth::guard('admin')->check())
                   <ul class="dropdown-menu dropdown-menu-right">
                       <li>

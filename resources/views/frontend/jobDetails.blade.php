@@ -20,7 +20,7 @@
                             </div> --}}
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
-                        <div class="banner-hero banner-image-single mt-10 mb-20"><img src="{{ asset('uploads/' . $jobs->image) }}" alt="jobBox"></div>
+                        <div class="banner-hero banner-image-single mt-10 mb-20"><img src="{{ asset('uploads/' . $jobs->image) }}" alt="jobBox" height="300"></div>
                         <div class="job-overview">
                             <h5 class="border-bottom pb-15 mb-30">Overview</h5>
                             <div class="row">

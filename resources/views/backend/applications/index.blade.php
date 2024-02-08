@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('title','All Jobs')
+@section('title','Applicants')
 @section('content')
 
 <div class="content">
     <div class="card card-default">
         <div class="card-header">
-          <h2>All Jobs</h2>
+          <h2>Applicants</h2>
         </div>
         <!-- Success Message -->
         @if (session('msg'))

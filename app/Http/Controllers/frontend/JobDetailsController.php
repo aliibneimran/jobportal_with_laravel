@@ -18,15 +18,22 @@ class JobDetailsController extends Controller
      */
     public function index($id)
     {
-        $candidateId = Auth::guard('candidate')->user()->id;
-        $data['application'] = Applicant::where('candidate_id', $candidateId)->where('job_id', $id)->first();
-
-        $data['apply'] = Applicant::where('candidate_id', Auth::guard('candidate')->user()->id)->exists();
-        $data['jobs'] = Job::find($id);
-        $data['locations'] = Location::all();
-        $data['categories'] = Category::all();
-        $data['company'] = Company::all();
-        return view('frontend/jobDetails',$data);
+        if(Auth::guard('candidate')->check()){
+            $candidateId = Auth::guard('candidate')->user()->id;
+            $data['application'] = Applicant::where('candidate_id', $candidateId)->where('job_id', $id)->first();
+            // $data['apply'] = Applicant::where('candidate_id', Auth::guard('candidate')->user()->id)->exists();
+            $data['jobs'] = Job::find($id);
+            $data['locations'] = Location::all();
+            $data['categories'] = Category::all();
+            $data['company'] = Company::all();
+            return view('frontend/jobDetails',$data);
+        } else {
+            $data['jobs'] = Job::find($id);
+            $data['locations'] = Location::all();
+            $data['categories'] = Category::all();
+            $data['company'] = Company::all();
+            return view('frontend/jobDetails',$data);
+        }
     }
 
     /**

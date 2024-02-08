@@ -17,19 +17,23 @@
     @endif
   <div class="row">
     <div class="form-group col-12">
+      <label for="">Job Title</label>
       <input type="text" name="title" value="{{old('title',$jobs->title)}}" class="form-control" id="exampleFormControlInput1" placeholder="Job Title">
     </div>
     <div class="form-group col-12">
+      <label for="">Position</label>
       <input type="text" name="position" value="{{old('position',$jobs->position)}}" class="form-control" id="exampleFormControlInput1" placeholder="Position">
     </div>
     <div class="form-group col-6">
+      <label for="">Salary</label>
       <input type="number" name="salary" value="{{old('salary',$jobs->salary)}}" class="form-control" id="exampleFormControlInput1" placeholder="Salary">
     </div>
     <div class="form-group col-6">
+      <label for="">Vacancy</label>
       <input type="number" name="vacancy" value="{{old('vacancy',$jobs->vacancy)}}" class="form-control" id="exampleFormControlInput1" placeholder="vacancy">
     </div>
     <div class="form-group col-4">
-      {{-- <label for="exampleFormControlSelect12">Select Category</label> --}}
+      <label for="">Category</label>
       <select class="form-control" name="category">
         <option value="">Select Category</option>
         @foreach($categories as $cat)
@@ -38,6 +42,7 @@
       </select>
     </div>
     <div class="form-group col-4">
+      <label for="">Location</label>
       <select class="form-control" name="location">
         <option value="">Select Location</option>
         @foreach($locations as $loc)
@@ -46,6 +51,7 @@
       </select>
     </div>
     <div class="form-group col-4">
+      <label for="">Industry</label>
       <select class="form-control" name="industry">
         <option value="">Select Industry</option>
         @foreach($industry as $ind)
@@ -54,19 +60,24 @@
       </select>
     </div>
     <div class="form-group col-12">
+      <label for="">Description</label>
       <textarea name="description"  class="form-control" placeholder="Job Description">{{old('description',$jobs->description)}}</textarea>
     </div>
     <div class="form-group col-6">
-      <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
-        <input type="radio" id="customRadio1" name="availability" value="1" @checked(old('availability',$jobs->availability)==1) class="custom-control-input">
-        <label class="custom-control-label" for="customRadio1">Available</label>
-      </div>
-      <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
-        <input type="radio" id="customRadio2" name="availability" value="0" @checked(old('availability',$jobs->availability)==0)  class="custom-control-input">
-        <label class="custom-control-label" for="customRadio2">Not Available</label>
+      <label for="">Availability</label>
+      <div>
+        <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
+          <input type="radio" id="customRadio1" name="availability" value="1" @checked(old('availability',$jobs->availability)==1) class="custom-control-input">
+          <label class="custom-control-label" for="customRadio1">Available</label>
+        </div>
+        <div class="custom-control custom-radio d-inline-block mr-3 mb-3">
+          <input type="radio" id="customRadio2" name="availability" value="0" @checked(old('availability',$jobs->availability)==0)  class="custom-control-input">
+          <label class="custom-control-label" for="customRadio2">Not Available</label>
+        </div>
       </div>
     </div>
     <div class="form-group col-6">
+      <label for="">Image</label>
         <div class="row">
             <div class="form-group col-6">
                 <input type="file" class="form-control-file" name="photo" id="exampleFormControlFile1">  

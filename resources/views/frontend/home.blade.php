@@ -123,7 +123,9 @@
                 <div class="card-grid-2 grid-bd-16 hover-up">
                   <div class="card-grid-2-image"><span class="lbl-hot bg-green"><span>{{$item->category->name}}</span></span>
                     <div class="image-box">
-                      <figure><img src="{{ asset('uploads/' . $item->image) }}" alt="jobBox"></figure>
+                      <figure>
+                        <img src="{{ asset('uploads/' . ($item->image ? $item->image : 'default-image.jpg')) }}" alt="jobBox" height="200">
+                      </figure>
                     </div>
                   </div>
                   <div class="card-block-info">
