@@ -6,6 +6,8 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\IndustryController;
 use App\Http\Controllers\backend\JobController;
 use App\Http\Controllers\backend\LocationController;
+use App\Http\Controllers\backend\PackageController;
+use App\Http\Controllers\backend\PaymentController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\frontend\ApplicationController;
@@ -76,11 +78,14 @@ Route::prefix('company')->group(function(){
     Route::get('register',[CompanyController::class,'register'])->name('company_register');
     Route::post('register/create',[CompanyController::class,'registration'])->name('company.register.create');
 
+    Route::get('password',[CompanyController::class,'forgetPassword'])->name('company.password');
+
     Route::get('profile',[CompanyController::class,'profile'])->name('company_profile')->middleware('company');
     Route::get('edit-profile', [CompanyController::class, 'editProfile'])->name('company.edit.profile')->middleware('company');
     Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
 
-
+    Route::resource('payments', PaymentController::class)->middleware('company');
+    Route::resource('packages', PackageController::class)->middleware('company');
 
 
     //jobs

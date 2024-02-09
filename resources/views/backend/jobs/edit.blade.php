@@ -32,6 +32,14 @@
       <label for="">Vacancy</label>
       <input type="number" name="vacancy" value="{{old('vacancy',$jobs->vacancy)}}" class="form-control" id="exampleFormControlInput1" placeholder="vacancy">
     </div>
+    <div class="form-group col-6">
+      <label for="">Start Apply</label>
+      <input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleFormControlInput1" >
+    </div>
+    <div class="form-group col-6">
+      <label for="">Dateline</label>
+      <input type="date" name="end_date" value="{{old('end_date')}}" class="form-control" id="exampleFormControlInput1">
+    </div>
     <div class="form-group col-4">
       <label for="">Category</label>
       <select class="form-control" name="category">
@@ -61,7 +69,7 @@
     </div>
     <div class="form-group col-12">
       <label for="">Description</label>
-      <textarea name="description"  class="form-control" placeholder="Job Description">{{old('description',$jobs->description)}}</textarea>
+      <textarea name="description"  class="form-control">{{old('description',$jobs->description)}}</textarea>
     </div>
     <div class="form-group col-6">
       <label for="">Availability</label>

@@ -6,6 +6,7 @@ use App\Models\backend\Job;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,6 +25,10 @@ class Company extends Authenticatable
     public function applicant():HasMany
     {
       return $this->hasMany(Applicant::class); 
+    }
+    public function package():BelongsTo
+    {
+      return $this->belongsTo(Package::class); 
     }
     
     /**

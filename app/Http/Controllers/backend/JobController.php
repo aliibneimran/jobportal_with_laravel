@@ -63,17 +63,23 @@ class JobController extends Controller
             'location' => 'required',
             'industry' => 'required',
             'vacancy' => 'required|numeric',
-            'photo' => 'mimes:jpg,jpeg,png'
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'photo' => 'mimes:jpg,jpeg,png|nullable'
         ]);
-        $filename = time() . '.' . $request->photo->extension();
+        if ($request->hasFile('photo')) {
+            $filename = time() . '.' . $request->photo->extension();
+            $request->photo->move('uploads', $filename);
+        }
         if ($validate) {
-        // $data = $request->all($filename);
             $data = [
                 'title' => $request->title,
                 'position' => $request->position,
                 'description' => $request->description,
                 'salary' => $request->salary,
                 'vacancy' => $request->vacancy,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'category_id' => $request->category,
                 'location_id' => $request->location,
                 'industry_id' => $request->industry,
@@ -115,7 +121,12 @@ class JobController extends Controller
     public function update(Request $request, string $id)
     {
         $job = Job::find($id);
-        $filename = time() . '.' . $request->photo->extension();
+        $filename = $job->image;
+        if ($request->hasFile('photo')) {
+            $filename = time() . '.' . $request->photo->extension();
+            $request->photo->move('uploads', $filename);
+        }
+        
         $data = [
             'title' => $request->title,
             'position' => $request->position,
@@ -131,7 +142,6 @@ class JobController extends Controller
         ];
 
         $job->update($data);
-        $request->photo->move('uploads', $filename);
         return redirect('company/jobs')->with('msg', 'Job Successfully Updated');
     }
 

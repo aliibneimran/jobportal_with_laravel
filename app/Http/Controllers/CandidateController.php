@@ -63,11 +63,11 @@ class CandidateController extends Controller
     public function updateProfile(Request $request){
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'old_password' => 'required|string|min:6', 
-            'new_password' => 'required|string|min:6',
-            'password_confirmation' => 'same:new_password|min:6',
+            'name' => 'string|max:255|nullable',
+            'email' => 'email|max:255|nullable',
+            'old_password' => 'string|min:6', 
+            'new_password' => 'string|min:6|nullable',
+            'password_confirmation' => 'same:new_password|min:6|nullable',
         ]);               
         
         $candidate = Candidate::findOrFail(Auth::guard('candidate')->user()->id);
@@ -84,18 +84,19 @@ class CandidateController extends Controller
         ]);
 
         
-        $validate = $request->validate([
+        $request->validate([
             'photo' => 'nullable|mimes:jpg,jpeg,png'
         ]);
-        $filename = time() . '.' . $request->photo->extension();
-        if($validate){
-            $details = [
-                'contact' => $request->contact,
-                'bio' => $request->bio,
-                'address' => $request->address,
-                'candidate_id' => $request->candidate_id,
-                'image' => $filename,
-            ];
+        $details = [
+            'contact' => $request->contact,
+            'bio' => $request->bio,
+            'address' => $request->address,
+            'candidate_id' => $request->candidate_id,
+        ];
+        if ($request->hasFile('profile')) {
+            $profile = time() . '.' . $request->file('profile')->extension();
+            $details['image'] = $profile;
+            $request->file('profile')->move('uploads', $profile);
         }
         $candidateDetails = CandidateDetails::where('candidate_id', Auth::guard('candidate')->user()->id)->first();
 
@@ -104,7 +105,6 @@ class CandidateController extends Controller
         } else {
             $candidateDetails->update($details);
         }
-        $request->photo->move('uploads', $filename);
         return redirect()->route('candidate_profile')->with('msg', 'Profile successfully updated');
     }
 

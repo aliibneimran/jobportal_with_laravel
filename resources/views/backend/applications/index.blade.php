@@ -29,6 +29,8 @@
               </tr>
             </thead>
             <tbody>
+            @if (Auth::guard('company')->check())
+                
             @php $no = 1 @endphp
             @foreach ($applicants as $item)
               <tr>
@@ -62,6 +64,7 @@
                 </td>              
               </tr>
             @endforeach
+            @endif
             </tbody>
           </table>
       </div>
@@ -76,7 +79,9 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modalContent">
+            @if(Auth::guard('admin')->check())
             {{$item->id}}
+            @endif
           </div>  
       </div>
   </div>

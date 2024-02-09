@@ -19,11 +19,14 @@ return new class extends Migration
             $table->integer('vacancy');
             $table->string('image',50)->nullable();
             $table->boolean('availability');
+            $table->dateTime('start_date',0);
+            $table->dateTime('end_date',0);
             $table->integer('category_id');
             $table->integer('location_id');
             $table->integer('industry_id');
             $table->integer('company_id');
             $table->text('description');
+            $table->tinyInteger('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

@@ -9,9 +9,8 @@
           <div class="row login-register-cover">
             <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
               <div class="text-center">
-                <p class="font-sm text-brand-2">Welcome back! </p>
-                <h2 class="mt-10 mb-5 text-brand-1">Member Login</h2>
-                <p class="font-sm text-muted mb-30">Access to all features. No credit card required.</p>
+                <h2 class="mt-10 mb-5 text-brand-1">User Login</h2>
+
                 <button class="btn social-login hover-up mb-20"><img src="../frontend/imgs/template/icons/icon-google.svg" alt="jobbox"><strong>Sign in with Google</strong></button>
                 <div class="divider-text-center"><span>Or continue with</span></div>
               </div>
@@ -27,7 +26,7 @@
               <form class="login-register text-start mt-20" action="{{route('candidate_login')}}" method="POST">
                 @csrf
                 <div class="form-group">
-                  <label class="form-label" for="input-1">Username or Email address *</label>
+                  <label class="form-label" for="input-1">Email address *</label>
                   <input class="form-control" id="input-1" type="text" required="" name="email" placeholder="Steven Job">
                 </div>
                 <div class="form-group">

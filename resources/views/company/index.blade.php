@@ -59,7 +59,7 @@
                               <label class="custom-control-label" for="customCheck2">Remember me</label>
                             </div>
 
-                            <a class="text-color" href="#"> Forgot password? </a>
+                            <a class="text-color" href="{{route('company.password')}}"> Forgot password? </a>
 
                           </div>
 

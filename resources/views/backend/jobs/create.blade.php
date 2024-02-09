@@ -33,11 +33,11 @@
     </div>
     <div class="form-group col-6">
       <label for="">Start Apply</label>
-      <input type="date" name="start_date" value="{{old('salary')}}" class="form-control" id="exampleFormControlInput1" placeholder="Salary">
+      <input type="date" name="start_date" value="{{old('start_date')}}" class="form-control" id="exampleFormControlInput1" >
     </div>
     <div class="form-group col-6">
       <label for="">Dateline</label>
-      <input type="date" name="end_date" value="{{old('salary')}}" class="form-control" id="exampleFormControlInput1" placeholder="Salary">
+      <input type="date" name="end_date" value="{{old('end_date')}}" class="form-control" id="exampleFormControlInput1">
     </div>
     <div class="form-group col-4">
       <label for="">Category</label>

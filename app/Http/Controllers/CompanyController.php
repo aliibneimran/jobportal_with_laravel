@@ -117,6 +117,12 @@ class CompanyController extends Controller
         }
         
         return redirect()->route('company_profile')->with('msg', 'Profile successfully updated');
-        
+    }
+    public function forgetPassword(){
+        return view('company.passwordReset');
+    }
+    public function resetPassword(Request $request)
+    {
+        return redirect()->route('password.forget')->with('success', 'Password reset link sent successfully.');
     }
 }

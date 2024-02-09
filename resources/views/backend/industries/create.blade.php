@@ -4,7 +4,7 @@
 <div class="content">
 <form action="{{route('industries.store')}}" method="POST">
     @csrf
-    <h4 class="p-4">Add Location</h4>
+    <h4 class="p-4">Add Industry</h4>
     <div class="form-group">
       <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name">
     </div>

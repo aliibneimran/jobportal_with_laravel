@@ -9,9 +9,7 @@
           <div class="row login-register-cover">
             <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
               <div class="text-center">
-                <p class="font-sm text-brand-2">Register </p>
-                <h2 class="mt-10 mb-5 text-brand-1">Start for free Today</h2>
-                <p class="font-sm text-muted mb-30">Access to all features. No credit card required.</p>
+                <h2 class="mt-10 mb-5 text-brand-1">User Registration</h2>
                 <button class="btn social-login hover-up mb-20"><img src="../frontend/imgs/template/icons/icon-google.svg" alt="jobbox"><strong>Sign up with Google</strong></button>
                 <div class="divider-text-center"><span>Or continue with</span></div>
               </div>

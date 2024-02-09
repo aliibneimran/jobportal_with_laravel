@@ -30,6 +30,9 @@
     <script src="{{asset('assets/plugins/nprogress/nprogress.js')}}"></script>
     {{-- font awesome --}}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    {{-- Editor --}}
+    <script src="{{asset('assets/plugins/tinymce/tinymce.min.js')}}"></script>
+
     
 </head>
 
@@ -208,6 +211,24 @@
     <script src="{{asset('assets/js/chart.js')}}"></script>
     <script src="{{asset('assets/js/map.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>
+    {{-- Editor --}}
+    <script src="{{asset('assets/plugins/tinymce/script.js')}}"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            height: 300,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                      alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | removeformat | help'
+        });
+    </script>
 </body>
 
 </html>

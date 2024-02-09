@@ -76,7 +76,20 @@
                     </ul>
                 </li>
                 <li><a class="sidenav-item-link" href="{{route('applications.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Applicants</span></a></li>
-                <li><a class="sidenav-item-link" href=""><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
+
+                <li><a class="sidenav-item-link" href="{{route('packages.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Package</span></a></li>
+                {{-- PAyments --}}
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#payment" aria-expanded="false" aria-controls="email"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payments</span><b class="caret"></b>
+                    </a>
+                    <ul class="collapse" id="payment" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                            <li><a class="sidenav-item-link"href="{{route('payments.index')}}"><span class="nav-text">All Payments</span></a></li>
+                            <li><a class="sidenav-item-link" href="{{route('payments.create')}}"><span class="nav-text">Add Payment</span></a></li>
+                        </div>
+                    </ul>
+                </li>
+
                 
             </ul>                
             @endif

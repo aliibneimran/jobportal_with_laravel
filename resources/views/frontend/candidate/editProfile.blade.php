@@ -4,22 +4,7 @@
 
 @section('content')
 <main class="main">
-      <section class="section-box-2">
-        <div class="container">
-          <div class="banner-hero banner-image-single"><img src="../frontend/imgs/page/candidates/img.png" alt="jobbox"><a class="btn-editor" href="#"></a></div>
-          <div class="box-company-profile">
-            <div class="image-compay"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="100px" height="100px"></div>
-            <div class="row mt-10">
-              <div class="col-lg-8 col-md-12">
-                <h5 class="f-18">{{ Auth::guard('candidate')->user()->name }}<span class="card-location font-regular ml-20">{{ $canDetails->address ?? '' }}</span></h5>
-                <p class="mt-0 font-md color-text-paragraph-2 mb-15">UI/UX Designer. Front end Developer</p>
-              </div>
-              <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-preview-icon btn-apply btn-apply-big" href="page-contact.html">Preview</a></div>
-            </div>
-          </div>
-          <div class="border-bottom pt-10 pb-10"></div>
-        </div>
-      </section>
+    
       <section class="section-box mt-50">
         <div class="container">
           <div class="row">
@@ -38,7 +23,7 @@
               <div class="content-single">
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="tab-my-profile" role="tabpanel" aria-labelledby="tab-my-profile">
-                    <h3 class="mt-0 mb-15 color-brand-1">My Account</h3><a class="font-md color-text-paragraph-2" href="#">Update your profile</a>
+                    <h3 class="mt-0 mb-15 color-brand-1 text-center">Edit Account</h3>
                     @if ($errors->any())
                       <div class="alert alert-danger">
                         <ul>
@@ -48,207 +33,78 @@
                         </ul>
                       </div>
                     @endif
-                  <form method="post" action="{{route('candidate.update.profile')}}" enctype="multipart/form-data">
-                    @csrf
                     @if (Auth::guard('candidate')->check())
-                    <div class="mt-35 mb-40 box-info-profie">
-                      <div class="image-profile"><img src="{{asset('uploads/' . ($canDetails->image ?? '') )}}" alt="Image" width="50px" height="50px">
+                <form action="{{route('candidate.update.profile')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row" >
+                      <div class="mt-35 mb-40 box-info-profie text-center">
+                        <div>
+                            <img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
+                        </div>
+                        <div class="m-auto p-10">
+                            <button class="btn btn-primary"><input type="file" name="profile"></button>
+                            {{-- <input type="file" name="profile"> --}}
+                        </div>
                       </div>
-                      <input type="file" name="photo">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Name</label>
+                          <input type="text" name="name" class="form-control" value="{{ Auth::guard('candidate')->user()->name }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Email</label>
+                          <input type="email" name="email" class="form-control" value="{{ Auth::guard('candidate')->user()->email }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Contact</label>
+                          <input type="text" name="contact" class="form-control" value="{{ $canDetails->contact ?? '' }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Address</label>
+                          <input type="text" name="address" class="form-control" value="{{ $canDetails->address ?? '' }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="lastName">Bio</label>
+                          <textarea name="bio" class="form-control">{{ $canDetails->bio ?? '' }}</textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label for="lastName">Old Password</label>
+                          <input type="password" name="old_password" class="form-control" value=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label for="lastName">New Password</label>
+                          <input type="password" name="new_password" class="form-control" value=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label for="lastName">Re-Password</label>
+                          <input type="password" name="password_confirmation" class="form-control" value=""/>
+                        </div>
+                      </div>
                     </div>
-                    <div class="row form-contact">
-                      <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Full Name *</label>
-                          <input class="form-control" type="text" value="{{ Auth::guard('candidate')->user()->name }}" name="name">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Email *</label>
-                          <input class="form-control" type="text" value="{{ Auth::guard('candidate')->user()->email }}" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Contact number</label>
-                          <input class="form-control" type="text" value="{{ $canDetails->contact ?? ''}}" name="contact">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Bio</label>
-                          <textarea class="form-control" rows="4" name="bio">{{ $canDetails->bio ?? ''}}</textarea>
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Address</label>
-                          <textarea name="address" class="form-control">{{ $canDetails->address ?? ''}}</textarea>
-                        </div>
-                        
-                        <div class="border-bottom pt-10 pb-10 mb-30"></div>
-                        <h6 class="color-orange mb-20">Change your password</h6>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Old Password</label>
-                          <input class="form-control" type="password" name="old_password" value="">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">New Password *</label>
-                          <input class="form-control" type="password" name="new_password" value="">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Re-Password *</label>
-                          <input class="form-control" type="password" name="password_confirmation" value="">
-                        </div>
-                        <div class="border-bottom pt-10 pb-10"></div>
-                        
-                        <input type="hidden" name="candidate_id" value="@if (Auth::guard('candidate')->check())
+                    <input type="hidden" name="candidate_id" value="@if (Auth::guard('candidate')->check())
                         {{ Auth::guard('candidate')->user()->id }}@endif">
-                        <div class="box-button mt-15">
-                          <button class="btn btn-apply-big font-md font-bold" type="submit">Save All Changes</button>
-                        </div>
-                        @endif
-                  </form>
-
-
-                      </div>
-                      <div class="col-lg-6 col-md-12">
-                        <div class="box-skills">
-                          <h5 class="mt-0 color-brand-1">Skills</h5>
-                          <div class="form-contact">
-                            <div class="form-group">
-                              <input class="form-control search-icon" type="text" value="" placeholder="E.g. Angular, Laravel...">
-                            </div>
-                          </div>
-                          <div class="box-tags mt-30"><a class="btn btn-grey-small mr-10">Figma<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Adobe XD<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NextJS<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">React<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">App<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Digital<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NodeJS<span class="close-icon"></span></a></div>
-                          <div class="mt-40"> <span class="card-info font-sm color-text-paragraph-2">You can add up to 15 skills</span></div>
-                        </div>
-                      </div>
+                    <div class="mt-20 text-center">
+                      <button class="btn btn-apply-big font-md font-bold" type="submit">Update Profile</button>
                     </div>
+                </form>
+                    @endif
                   </div>
-                  <div class="tab-pane fade" id="tab-my-jobs" role="tabpanel" aria-labelledby="tab-my-jobs">
-                    <h3 class="mt-0 color-brand-1 mb-50">My Jobs</h3>
-                    <div class="row display-list">
-                      <div class="col-xl-12 col-12">
-                        <div class="card-grid-2 hover-up"><span class="flash"></span>
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="card-grid-2-image-left">
-                                <div class="image-box"><img src="../frontend/imgs/brands/brand-5.png" alt="jobBox"></div>
-                                <div class="right-info"><a class="name-job" href="">Linkedin</a><span class="location-small">New York, US</span></div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                              <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5" href="#">Adobe XD</a><a class="btn btn-grey-small mr-5" href="#">Figma</a></div>
-                            </div>
-                          </div>
-                          <div class="card-block-info">
-                            <h4><a href="job-details.html">React Native Web Developer</a></h4>
-                            <div class="mt-5"><span class="card-briefcase">Fulltime</span><span class="card-time"><span>4</span><span> mins ago</span></span></div>
-                            <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur</p>
-                            <div class="card-2-bottom mt-20">
-                              <div class="row">
-                                <div class="col-lg-7 col-7"><span class="card-text-price">$500</span><span class="text-muted">/Hour</span></div>
-                                <div class="col-lg-5 col-5 text-end">
-                                  <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-12 col-12">
-                        <div class="card-grid-2 hover-up"><span class="flash"></span>
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="card-grid-2-image-left">
-                                <div class="image-box"><img src="../frontend/imgs/brands/brand-6.png" alt="jobBox"></div>
-                                <div class="right-info"><a class="name-job" href="">Quora JSC</a><span class="location-small">New York, US</span></div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                              <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5" href="#">Adobe XD</a><a class="btn btn-grey-small mr-5" href="#">Figma</a></div>
-                            </div>
-                          </div>
-                          <div class="card-block-info">
-                            <h4><a href="job-details.html">Senior System Engineer</a></h4>
-                            <div class="mt-5"><span class="card-briefcase">Part time</span><span class="card-time"><span>5</span><span> mins ago</span></span></div>
-                            <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                            <div class="card-2-bottom mt-20">
-                              <div class="row">
-                                <div class="col-lg-7 col-7"><span class="card-text-price">$800</span><span class="text-muted">/Hour</span></div>
-                                <div class="col-lg-5 col-5 text-end">
-                                  <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-12 col-12">
-                        <div class="card-grid-2 hover-up"><span class="flash"></span>
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="card-grid-2-image-left">
-                                <div class="image-box"><img src="../frontend/imgs/brands/brand-7.png" alt="jobBox"></div>
-                                <div class="right-info"><a class="name-job" href="">Nintendo</a><span class="location-small">New York, US</span></div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                              <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5" href="#">Adobe XD</a><a class="btn btn-grey-small mr-5" href="#">Figma</a></div>
-                            </div>
-                          </div>
-                          <div class="card-block-info">
-                            <h4><a href="job-details.html">Products Manager</a></h4>
-                            <div class="mt-5"><span class="card-briefcase">Full time</span><span class="card-time"><span>6</span><span> mins ago</span></span></div>
-                            <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                            <div class="card-2-bottom mt-20">
-                              <div class="row">
-                                <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
-                                <div class="col-lg-5 col-5 text-end">
-                                  <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xl-12 col-12">
-                        <div class="card-grid-2 hover-up"><span class="flash"></span>
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                              <div class="card-grid-2-image-left">
-                                <div class="image-box"><img src="../frontend/imgs/brands/brand-8.png" alt="jobBox"></div>
-                                <div class="right-info"><a class="name-job" href="">Periscope</a><span class="location-small">New York, US</span></div>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                              <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5" href="#">Adobe XD</a><a class="btn btn-grey-small mr-5" href="#">Figma</a></div>
-                            </div>
-                          </div>
-                          <div class="card-block-info">
-                            <h4><a href="job-details.html">Lead Quality Control QA</a></h4>
-                            <div class="mt-5"><span class="card-briefcase">Full time</span><span class="card-time"><span>6</span><span> mins ago</span></span></div>
-                            <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                            <div class="card-2-bottom mt-20">
-                              <div class="row">
-                                <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
-                                <div class="col-lg-5 col-5 text-end">
-                                  <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="paginations">
-                      <ul class="pager">
-                        <li><a class="pager-prev" href="#"></a></li>
-                        <li><a class="pager-number" href="#">1</a></li>
-                        <li><a class="pager-number" href="#">2</a></li>
-                        <li><a class="pager-number" href="#">3</a></li>
-                        <li><a class="pager-number" href="#">4</a></li>
-                        <li><a class="pager-number" href="#">5</a></li>
-                        <li><a class="pager-number active" href="#">6</a></li>
-                        <li><a class="pager-number" href="#">7</a></li>
-                        <li><a class="pager-next" href="#"></a></li>
-                      </ul>
-                    </div>
                   </div>
+
                   <div class="tab-pane fade" id="tab-saved-jobs" role="tabpanel" aria-labelledby="tab-saved-jobs">
                     <h3 class="mt-0 color-brand-1 mb-50">Saved Jobs</h3>
                     <div class="row"> 
@@ -499,5 +355,5 @@
           </div>
         </div>
       </section>
-    </main>
+</main>
 @endsection

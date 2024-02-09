@@ -4,29 +4,7 @@
 
 @section('content')
 <main class="main">
-      <section class="section-box-2">
-        <div class="container">
-          <div class="banner-hero banner-image-single"><img src="../frontend/imgs/page/candidates/img.png" alt="jobbox"><a class="btn-editor" href="#"></a></div>
-          <div class="box-company-profile">
-            <div class="image-compay"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="100px" height="100px"></div>
-            <div class="row mt-10">
-              <div class="col-lg-8 col-md-12">
-                <h5 class="f-18">{{ Auth::guard('candidate')->user()->name }}<span class="card-location font-regular ml-20">{{ $canDetails->address ?? '' }}</span></h5>
-                <p class="mt-0 font-md color-text-paragraph-2 mb-15">UI/UX Designer. Front end Developer</p>
-              </div>
-              <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-preview-icon btn-apply btn-apply-big" href="page-contact.html">Preview</a></div>
-            </div>
-          </div>
-          <div class="border-bottom pt-10 pb-10">
-            <!-- Success Message -->
-            @if (session('msg'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('msg') }}
-            </div>
-            @endif
-          </div>
-        </div>
-      </section>
+    
       <section class="section-box mt-50">
         <div class="container">
           <div class="row">
@@ -45,61 +23,54 @@
               <div class="content-single">
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="tab-my-profile" role="tabpanel" aria-labelledby="tab-my-profile">
-                    <h3 class="mt-0 mb-15 color-brand-1">My Account</h3><a class="font-md color-text-paragraph-2" href="#">Update your profile</a>
-
-
-                  <form method="" action="" enctype="multipart/form-data">
-                    @csrf
+                    <h3 class="mt-0 mb-15 color-brand-1 text-center">My Account</h3>
+                    <!-- Success Message -->
+                @if (session('msg'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('msg') }}
+                </div>
+                @endif
                     @if (Auth::guard('candidate')->check())
-                    <div class="mt-35 mb-40 box-info-profie">
-                      <div class="image-profile"><img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="70px" height="70px">
+                    <div class="row">
+                      <div class="mt-35 mb-40 box-info-profie text-center">
+                        <img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
                       </div>
-                      <input type="file" name="photo">
-                    </div>
-                    <div class="row form-contact">
-                      <div class="col-lg-6 col-md-12">
+                      <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Full Name *</label>
-                          <input class="form-control" type="text" value="{{ Auth::guard('candidate')->user()->name }}" name="name">
+                          <label for="lastName">Name</label>
+                          <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ Auth::guard('candidate')->user()->name }}"/>
                         </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Email *</label>
-                          <input class="form-control" type="text" value="{{ Auth::guard('candidate')->user()->email }}" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Contact number</label>
-                          <input class="form-control" type="text" value="{{ $canDetails->contact ?? '' }}" name="contact">
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Bio</label>
-                          <textarea class="form-control" rows="4" name="bio">{{ $canDetails->bio ?? '' }}</textarea>
-                        </div>
-                        <div class="form-group">
-                          <label class="font-sm color-text-mutted mb-10">Address</label>
-                          <input class="form-control" type="url" value="{{ $canDetails->address ?? ''}}" name="address">
-                        </div>
-                        
-                        <div class="box-button mt-15">
-                          <a href="{{route('candidate.edit.profile')}}" class="btn btn-apply-big font-md font-bold" type="submit">Edit</a>
-                        </div>
-                        @endif
-                  </form>
-
-
                       </div>
-                      <div class="col-lg-6 col-md-12">
-                        <div class="box-skills">
-                          <h5 class="mt-0 color-brand-1">Skills</h5>
-                          <div class="form-contact">
-                            <div class="form-group">
-                              <input class="form-control search-icon" type="text" value="" placeholder="E.g. Angular, Laravel...">
-                            </div>
-                          </div>
-                          <div class="box-tags mt-30"><a class="btn btn-grey-small mr-10">Figma<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Adobe XD<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NextJS<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">React<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">App<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">Digital<span class="close-icon"></span></a><a class="btn btn-grey-small mr-10">NodeJS<span class="close-icon"></span></a></div>
-                          <div class="mt-40"> <span class="card-info font-sm color-text-paragraph-2">You can add up to 15 skills</span></div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Email</label>
+                          <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ Auth::guard('candidate')->user()->email }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Contact</label>
+                          <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ $canDetails->contact ?? '' }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="lastName">Address</label>
+                          <input type="text" class="form-control aria-disabled" @disabled(true) value="{{ $canDetails->address ?? '' }}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="lastName">Bio</label>
+                          <textarea class="form-control aria-disabled" @disabled(true)>{{ $canDetails->bio ?? '' }}</textarea>
                         </div>
                       </div>
                     </div>
+                    <div class="mt-20 text-center">
+                      <a href="{{route('candidate.edit.profile')}}" class="btn btn-apply-big font-md font-bold" type="submit">Edit Profile</a>
+                    </div>
+                    @endif
+                  </div>
                   </div>
                   <div class="tab-pane fade" id="tab-my-jobs" role="tabpanel" aria-labelledby="tab-my-jobs">
                     <h3 class="mt-0 color-brand-1 mb-50">My Jobs</h3>
@@ -395,5 +366,5 @@
           </div>
         </div>
       </section>
-    </main>
+</main>
 @endsection
