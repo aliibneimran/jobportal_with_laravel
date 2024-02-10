@@ -67,6 +67,10 @@ Route::prefix('admin')->group(function(){
 
     Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
     Route::resource('packages', PackageController::class)->middleware('admin');
+    Route::resource('payments', PaymentController::class);
+    Route::post('approve/{id}',[PaymentController::class,'approve'])->name('approve')->middleware('admin');
+
+
 
 
 });
@@ -86,8 +90,8 @@ Route::prefix('company')->group(function(){
     Route::get('edit-profile', [CompanyController::class, 'editProfile'])->name('company.edit.profile')->middleware('company');
     Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
 
-    Route::resource('payments', PaymentController::class)->middleware('company');
     Route::resource('packages', PackageController::class);
+    Route::resource('payments', PaymentController::class);
 
 
     //jobs

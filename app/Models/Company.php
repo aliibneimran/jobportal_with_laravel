@@ -30,6 +30,10 @@ class Company extends Authenticatable
     {
       return $this->belongsTo(Package::class); 
     }
+    public function payment():BelongsTo
+    {
+      return $this->belongsTo(Payment::class); 
+    }
     
     /**
      * The attributes that are mass assignable.
