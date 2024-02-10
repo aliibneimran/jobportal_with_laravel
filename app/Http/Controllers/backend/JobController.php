@@ -54,6 +54,11 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        $jobCount = Job::where('company_id', $request->company)->count();
+        if ($jobCount >= 2) {
+            return redirect('company/jobs')->with('error', 'You have reached the maximum limit of 2 job posts.');
+        }
+
         $validate = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -90,7 +95,6 @@ class JobController extends Controller
         }
         // dd($data); 
         if (Job::create($data)) {
-            $request->photo->move('uploads', $filename);
             return redirect('company/jobs')->with('msg', 'Job Successfully Post');
         }
     }
@@ -155,3 +159,5 @@ class JobController extends Controller
         return redirect('company/jobs')->with('msg', 'Successfully Deleted');
     }
 }
+
+

@@ -25,11 +25,11 @@
                   <div class="tab-pane fade show active" id="tab-my-profile" role="tabpanel" aria-labelledby="tab-my-profile">
                     <h3 class="mt-0 mb-15 color-brand-1 text-center">My Account</h3>
                     <!-- Success Message -->
-                @if (session('msg'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('msg') }}
-                </div>
-                @endif
+                    @if (session('msg'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('msg') }}
+                    </div>
+                    @endif
                     @if (Auth::guard('candidate')->check())
                     <div class="row">
                       <div class="mt-35 mb-40 box-info-profie text-center">
@@ -71,7 +71,8 @@
                     </div>
                     @endif
                   </div>
-                  </div>
+                  
+                  @if($application)
                   <div class="tab-pane fade" id="tab-my-jobs" role="tabpanel" aria-labelledby="tab-my-jobs">
                     <h3 class="mt-0 color-brand-1 mb-50">My Jobs</h3>
                     <div class="row display-list">
@@ -96,7 +97,7 @@
                               <div class="row">
                                 <div class="col-lg-7 col-7"><span class="card-text-price">{{$item->job->salary}}</span><span class="text-muted"> TK /Month</span></div>
                                 <div class="col-lg-5 col-5 text-end">
-                                  @if (!$item->status==0)
+                                  @if ($item->status!=0)
                                   <button class="btn btn-success">Approved</button>
                                   @else
                                   <button class="btn btn-warning">Pending</button>
@@ -116,6 +117,10 @@
                       {{-- {!! $jobs->withQueryString()->links('pagination::bootstrap-5')!!} --}}
                     </div>
                   </div>
+                  @else
+                  <h2>There is no Application</h2>
+                  @endif
+
                   <div class="tab-pane fade" id="tab-saved-jobs" role="tabpanel" aria-labelledby="tab-saved-jobs">
                     <h3 class="mt-0 color-brand-1 mb-50">Saved Jobs</h3>
                     <div class="row"> 
@@ -343,25 +348,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section-box mt-50 mb-20">
-        <div class="container">
-          <div class="box-newsletter">
-            <div class="row">
-              <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="../frontend/imgs/template/newsletter-left.png" alt="joxBox"></div>
-              <div class="col-lg-12 col-xl-6 col-12">
-                <h2 class="text-md-newsletter text-center">New Things Will Always<br> Update Regularly</h2>
-                <div class="box-form-newsletter mt-40">
-                  <form class="form-newsletter">
-                    <input class="input-newsletter" type="text" value="" placeholder="Enter your email here">
-                    <button class="btn btn-default font-heading icon-send-letter">Subscribe</button>
-                  </form>
-                </div>
-              </div>
-              <div class="col-xl-3 col-12 text-center d-none d-xl-block"><img src="../frontend/imgs/template/newsletter-right.png" alt="joxBox"></div>
             </div>
           </div>
         </div>

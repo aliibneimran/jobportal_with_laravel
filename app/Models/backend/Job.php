@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Job extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','position','description','salary','vacancy','image','availability','category_id','location_id','industry_id','company_id'];
+    protected $fillable = ['title','position','description','salary','vacancy','start_date','end_date','image','availability','category_id','location_id','industry_id','company_id'];
 
     public function category():BelongsTo
     {

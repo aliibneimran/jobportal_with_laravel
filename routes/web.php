@@ -66,6 +66,8 @@ Route::prefix('admin')->group(function(){
     Route::get('industries/delete/{id}',[IndustryController::class,'delete'])->name('industries.delete')->middleware('admin');
 
     Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
+    Route::resource('packages', PackageController::class)->middleware('admin');
+
 
 });
 
@@ -85,7 +87,7 @@ Route::prefix('company')->group(function(){
     Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
 
     Route::resource('payments', PaymentController::class)->middleware('company');
-    Route::resource('packages', PackageController::class)->middleware('company');
+    Route::resource('packages', PackageController::class);
 
 
     //jobs

@@ -65,7 +65,7 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'string|max:255|nullable',
             'email' => 'email|max:255|nullable',
-            'old_password' => 'string|min:6', 
+            'old_password' => 'string|min:6|nullable', 
             'new_password' => 'string|min:6|nullable',
             'password_confirmation' => 'same:new_password|min:6|nullable',
         ]);               

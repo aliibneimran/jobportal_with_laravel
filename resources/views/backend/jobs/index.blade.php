@@ -12,6 +12,11 @@
             {{ session('msg') }}
         </div>
         @endif
+        @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+        </div>
+        @endif
         <div class="card-body">
           <table id="productsTable" class="table table-product" style="width:100%">
             <thead>
