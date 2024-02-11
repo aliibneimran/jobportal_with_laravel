@@ -8,6 +8,7 @@ use App\Models\backend\Industry;
 use App\Models\backend\Job;
 use App\Models\backend\Location;
 use App\Models\Company;
+use App\Models\CompanyDetails;
 use Illuminate\Http\Request;
 
 class JobListController extends Controller
@@ -22,6 +23,7 @@ class JobListController extends Controller
         $data['locations'] = Location::all();
         $data['categories'] = Category::all();
         $data['company'] = Company::all();
+        $data['comDetails'] = CompanyDetails::all();
         $data['totalJobs'] = Job::count(); 
         return view('frontend/jobsList',$data);
     }

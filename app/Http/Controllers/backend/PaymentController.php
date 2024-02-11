@@ -42,6 +42,6 @@ class PaymentController extends Controller
         $status = Payment::find($id);
         $status->status = 1;
         $status->update();
-        return redirect()->back();
+        return redirect()->back(); 
     }
 }

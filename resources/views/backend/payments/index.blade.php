@@ -51,18 +51,15 @@
                     
                     @elseif (Auth::guard('admin')->check())
                         
-                        @if ($item->status == 0)
-                            <button class="btn btn-warning">Pending</button>
-                        @else
-                            <form action="{{route('payments.approve',$item->id)}}" method="post"> 
-                              @csrf
-                              @method('PUT')
-                              <button class="btn btn-success" type="submit">Approved</button>
-                            </form>
-                        @endif    
+                      @if (!$item->status==0)
+                        <button class="btn btn-success">Approved</button>
+                      @else
+                        <form action="{{route('payments.approve',$item->id)}}" method="post">
+                          @csrf
+                          <button class="btn btn-warning" type="submit">Pending</button>
+                        </form> 
+                      @endif  
                     @endif
-
-                    
                     
                 </td>
               </tr>

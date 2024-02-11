@@ -54,6 +54,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        
         $jobCount = Job::where('company_id', $request->company)->count();
         if ($jobCount >= 2) {
             return redirect('company/jobs')->with('error', 'You have reached the maximum limit of 2 job posts.');

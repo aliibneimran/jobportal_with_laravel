@@ -65,14 +65,13 @@ Route::prefix('admin')->group(function(){
     Route::post('industries/update/{id}',[IndustryController::class,'update'])->name('industries.update')->middleware('admin');
     Route::get('industries/delete/{id}',[IndustryController::class,'delete'])->name('industries.delete')->middleware('admin');
 
-
-    //Package
-    Route::get('packages', [PackageController::class,'index'])->name('packages.index')->middleware('admin');
-    Route::get('packages/create', [PackageController::class,'create'])->name('packages.create')->middleware('admin');
-    Route::post('packages/store', [PackageController::class,'store'])->name('packages.store')->middleware('admin');
-    Route::get('packages/edit/{id}', [PackageController::class,'edit'])->name('packages.edit')->middleware('admin');
-    Route::post('packages/update/{id}', [PackageController::class,'update'])->name('packages.update')->middleware('admin');
-    Route::post('packages/delete/{id}', [PackageController::class,'destroy'])->name('packages.destroy')->middleware('admin');
+    //Packages
+    Route::get('packages',[PackageController::class,'index'])->name('packages.index')->middleware('admin');
+    Route::get('packages/create',[PackageController::class,'create'])->name('packages.create')->middleware('admin');
+    Route::post('packages/store',[PackageController::class,'store'])->name('packages.store')->middleware('admin');
+    Route::get('packages/edit/{id}',[PackageController::class,'edit'])->name('packages.edit')->middleware('admin');
+    Route::post('packages/update/{id}',[PackageController::class,'update'])->name('packages.update')->middleware('admin');
+    Route::get('packages/delete/{id}',[PackageController::class,'delete'])->name('packages.delete')->middleware('admin');
 
     Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
 
@@ -99,9 +98,8 @@ Route::prefix('company')->group(function(){
     Route::get('edit-profile', [CompanyController::class, 'editProfile'])->name('company.edit.profile')->middleware('company');
     Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
 
-    // Route::get('packages', [PackageController::class,'index'])->name('packages.index')->middleware('company');
-
-    // Route::get('packages/show/{id}', [PackageController::class,'show'])->name('packages.show')->middleware('company');
+    Route::get('packages',[PackageController::class,'index'])->name('packages')->middleware('company');
+    Route::get('packages/show/{id}', [PackageController::class,'show'])->name('packages.show')->middleware('company');
 
     Route::get('payments',[PaymentController::class,'index'])->name('payments')->middleware('company');
     Route::post('payments',[PaymentController::class,'store'])->name('payments.store')->middleware('company');

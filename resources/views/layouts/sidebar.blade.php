@@ -67,8 +67,7 @@
                         </div>
                     </ul>
                 </li>
-                
-                
+
                 <li><a class="sidenav-item-link" href="{{route('payments.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
             </ul>               
 
@@ -90,7 +89,7 @@
                 </li>
                 <li><a class="sidenav-item-link" href="{{route('applications.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Applicants</span></a></li>
 
-                <li><a class="sidenav-item-link" href=""><i class="mdi mdi-arrow-all"></i><span class="nav-text">Package</span></a></li>
+                <li><a class="sidenav-item-link" href="{{route('packages')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Package</span></a></li>
 
                 <li><a class="sidenav-item-link" href="{{route('payments')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
                

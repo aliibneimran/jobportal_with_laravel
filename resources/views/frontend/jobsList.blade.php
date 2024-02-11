@@ -74,7 +74,10 @@
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                 <div class="card-grid-2 hover-up">
                                     <div class="card-grid-2-image-left"><span class="flash"></span>
-                                        <div class="image-box"><img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px"></div>
+                                        <div class="image-box">
+                                            <img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px">
+
+                                        </div>
                                         <div class="right-info"><a class="name-job" href="company-details.html">{{$item->company->name}}</a><span class="location-small">{{$item->location->name}}</span></div>
                                     </div>
                                     <div class="card-block-info">
