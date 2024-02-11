@@ -65,10 +65,19 @@ Route::prefix('admin')->group(function(){
     Route::post('industries/update/{id}',[IndustryController::class,'update'])->name('industries.update')->middleware('admin');
     Route::get('industries/delete/{id}',[IndustryController::class,'delete'])->name('industries.delete')->middleware('admin');
 
+
+    //Package
+    Route::get('packages', [PackageController::class,'index'])->name('packages.index')->middleware('admin');
+    Route::get('packages/create', [PackageController::class,'create'])->name('packages.create')->middleware('admin');
+    Route::post('packages/store', [PackageController::class,'store'])->name('packages.store')->middleware('admin');
+    Route::get('packages/edit/{id}', [PackageController::class,'edit'])->name('packages.edit')->middleware('admin');
+    Route::post('packages/update/{id}', [PackageController::class,'update'])->name('packages.update')->middleware('admin');
+    Route::post('packages/delete/{id}', [PackageController::class,'destroy'])->name('packages.destroy')->middleware('admin');
+
     Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
-    Route::resource('packages', PackageController::class)->middleware('admin');
-    Route::resource('payments', PaymentController::class);
-    Route::post('approve/{id}',[PaymentController::class,'approve'])->name('approve')->middleware('admin');
+
+    Route::get('payments',[PaymentController::class,'index'])->name('payments.index')->middleware('admin');
+    Route::post('payments/approve/{id}',[PaymentController::class,'approve'])->name('payments.approve')->middleware('admin');
 
 
 
@@ -90,8 +99,12 @@ Route::prefix('company')->group(function(){
     Route::get('edit-profile', [CompanyController::class, 'editProfile'])->name('company.edit.profile')->middleware('company');
     Route::post('update-profile', [CompanyController::class, 'updateProfile'])->name('company.update.profile')->middleware('company');
 
-    Route::resource('packages', PackageController::class);
-    Route::resource('payments', PaymentController::class);
+    // Route::get('packages', [PackageController::class,'index'])->name('packages.index')->middleware('company');
+
+    // Route::get('packages/show/{id}', [PackageController::class,'show'])->name('packages.show')->middleware('company');
+
+    Route::get('payments',[PaymentController::class,'index'])->name('payments')->middleware('company');
+    Route::post('payments',[PaymentController::class,'store'])->name('payments.store')->middleware('company');
 
 
     //jobs

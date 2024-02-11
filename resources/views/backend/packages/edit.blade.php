@@ -4,7 +4,6 @@
 <div class="content">
 <form action="{{route('packages.update',$package->id)}}" method="POST">
     @csrf
-    @method('PUT')
 
     @if ($errors->any())
         <div class="alert alert-danger">

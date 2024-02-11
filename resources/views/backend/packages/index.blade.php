@@ -40,7 +40,6 @@
                         <a href="{{ route('packages.edit', $item->id) }}" ><i class="mdi mdi-square-edit-outline"></i></a>
                         <form method="POST" action="{{ route('packages.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
                           @csrf
-                          @method('DELETE')
                           <button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
                               <i class="mdi mdi-trash-can-outline"></i>
                           </button>
@@ -68,7 +67,7 @@
       <div class="modal-content">
           <form action="" method="post">
             @csrf
-            <input type="text" name="company_id" value="{{Auth::guard('company')->user()->id}}">
+            <input type="text" name="company_id" value="">
             <input type="text" name="package_id" value="">
               <div class="modal-header px-4">
                   <h5 class="modal-title" id="packageModal">

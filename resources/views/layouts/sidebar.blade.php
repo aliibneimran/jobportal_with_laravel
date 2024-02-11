@@ -56,17 +56,19 @@
                         </div>
                     </ul>
                 </li>
-                {{-- Package --}}
+                {{-- Packages --}}
                 <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#package" aria-expanded="false" aria-controls="email"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Packages</span><b class="caret"></b>
                     </a>
                     <ul class="collapse" id="package" data-parent="#sidebar-menu">
                         <div class="sub-menu">
-                            <li><a class="sidenav-item-link" href="{{route('packages.index')}}"><span class="nav-text">All Packages</span></a></li>
+                            <li><a class="sidenav-item-link"href="{{route('packages.index')}}"><span class="nav-text">All Packages</span></a></li>
                             <li><a class="sidenav-item-link" href="{{route('packages.create')}}"><span class="nav-text">Add Package</span></a></li>
                         </div>
                     </ul>
                 </li>
+                
+                
                 <li><a class="sidenav-item-link" href="{{route('payments.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
             </ul>               
 
@@ -88,9 +90,9 @@
                 </li>
                 <li><a class="sidenav-item-link" href="{{route('applications.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Applicants</span></a></li>
 
-                <li><a class="sidenav-item-link" href="{{route('packages.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Package</span></a></li>
+                <li><a class="sidenav-item-link" href=""><i class="mdi mdi-arrow-all"></i><span class="nav-text">Package</span></a></li>
 
-                <li><a class="sidenav-item-link" href="{{route('payments.index')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
+                <li><a class="sidenav-item-link" href="{{route('payments')}}"><i class="mdi mdi-arrow-all"></i><span class="nav-text">Payment</span></a></li>
                
 
                 

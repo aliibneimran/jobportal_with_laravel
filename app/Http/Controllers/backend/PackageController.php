@@ -9,26 +9,17 @@ use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $package = Package::all();
         return view('backend.packages.index',compact('package'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('backend.packages.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // dd($request->all());
@@ -43,9 +34,6 @@ class PackageController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $package = Package::find($id);
@@ -54,18 +42,12 @@ class PackageController extends Controller
         // return view('backend.packages.index',compact('package'));    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $package = Package::find($id);
         return view('backend.packages.edit',compact('package'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $package = Package::find($id);
@@ -79,9 +61,6 @@ class PackageController extends Controller
         return redirect()->route('packages.index')->with('msg', 'Successfully Update'); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $package = Package::find($id);

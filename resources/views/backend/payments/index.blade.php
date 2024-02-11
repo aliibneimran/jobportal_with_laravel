@@ -12,6 +12,13 @@
             {{ session('msg') }}
         </div>
         @endif
+        @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
         <div class="card-body">
           <table id="productsTable" class="table table-product" style="width:100%">
             <thead>
@@ -47,9 +54,10 @@
                         @if ($item->status == 0)
                             <button class="btn btn-warning">Pending</button>
                         @else
-                            <form action="{{route('approve',$item->id)}}" method="post">
-                            @csrf
-                            <button class="btn btn-success" type="submit">Approved</button>
+                            <form action="{{route('payments.approve',$item->id)}}" method="post"> 
+                              @csrf
+                              @method('PUT')
+                              <button class="btn btn-success" type="submit">Approved</button>
                             </form>
                         @endif    
                     @endif
