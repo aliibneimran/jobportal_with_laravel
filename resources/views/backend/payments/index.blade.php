@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title','All Locations')
+@section('title','Payments')
 @section('content')
 <div class="content">
     <div class="card card-default">
         <div class="card-header">
-          <h2>All Locations</h2>
+          <h2>All Payments</h2>
         </div>
         <!-- Success Message -->
         @if (session('msg'))

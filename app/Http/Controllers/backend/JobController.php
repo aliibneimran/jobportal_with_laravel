@@ -7,6 +7,8 @@ use App\Models\backend\Category;
 use App\Models\backend\Industry;
 use App\Models\backend\Job;
 use App\Models\backend\Location;
+use App\Models\Company;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,10 +55,11 @@ class JobController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        
+    { 
+        $companyID = Auth::guard('company')->user()->id;
         $jobCount = Job::where('company_id', $request->company)->count();
         if ($jobCount >= 2) {
+            Company::where('id', $companyID)->update(['status' => 0]);
             return redirect('company/jobs')->with('error', 'You have reached the maximum limit of 2 job posts.');
         }
 
