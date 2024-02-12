@@ -56,6 +56,7 @@
                       @else
                         <form action="{{route('payments.approve',$item->id)}}" method="post">
                           @csrf
+                          <input type="hidden" name="company" value="{{$item->company_id}}">
                           <button class="btn btn-warning" type="submit">Pending</button>
                         </form> 
                       @endif  

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,11 +38,21 @@ class PaymentController extends Controller
         }
 
     }
-    public function approve($id)
+    public function approve(Request $request ,$id)
     {
         $status = Payment::find($id);
-        $status->status = 1;
-        $status->update();
-        return redirect()->back(); 
+
+        if ($status) {
+            $status->status = 1;
+            $status->update();
+        
+            $companyID = Payment::where('company_id', $request->company)->first();
+        
+            if ($companyID) {
+                Company::where('id', $companyID->company_id)->update(['status' => 1]);
+            }
+        }        
+
+        return redirect()->back();  
     }
 }
