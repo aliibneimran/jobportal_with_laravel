@@ -14,6 +14,15 @@ use Laravel\Sanctum\HasApiTokens;
 class Company extends Authenticatable
 {
     use HasFactory,HasApiTokens, Notifiable;
+    protected $fillable = ['name','email','password','limit','status'];
+    public function package():BelongsTo
+    {
+      return $this->belongsTo(Package::class); 
+    }
+    public function payment():BelongsTo
+    {
+      return $this->belongsTo(Payment::class); 
+    }
     public function companyDetails():HasMany
     {
       return $this->hasMany(CompanyDetails::class); 
@@ -26,26 +35,14 @@ class Company extends Authenticatable
     {
       return $this->hasMany(Applicant::class); 
     }
-    public function package():BelongsTo
-    {
-      return $this->belongsTo(Package::class); 
-    }
-    public function payment():BelongsTo
-    {
-      return $this->belongsTo(Payment::class); 
-    }
+    
     
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'status',
-    ];
+    
 
     /**
      * The attributes that should be hidden for serialization.

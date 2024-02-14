@@ -4,7 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Package;
 use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,21 +40,30 @@ class PaymentController extends Controller
         }
 
     }
-    public function approve(Request $request ,$id)
+
+    public function approve(Request $request, $id)
     {
-        $status = Payment::find($id);
+        $payment = Payment::find($id);
 
-        if ($status) {
-            $status->status = 1;
-            $status->update();
-        
-            $companyID = Payment::where('company_id', $request->company)->first();
-        
-            if ($companyID) {
-                Company::where('id', $companyID->company_id)->update(['status' => 1]);
+        if ($payment) {
+            $payment->status = 1;
+            $payment->save();
+
+            $package = Package::find($payment->package_id);
+            if ($package) {
+                $company = Company::find($payment->company_id);
+                if ($company) {
+                    $newLimit = $company->limit + $package->posts;
+                    $company->update(['limit' => $newLimit]);
+
+                    $expirationDate = Carbon::parse($payment->updated_at)->addDays(30);
+                    $payment->expired_date = $expirationDate;
+                    $payment->save();
+                }
             }
-        }        
-
-        return redirect()->back();  
+        }
+        return redirect()->back();
     }
+
+
 }

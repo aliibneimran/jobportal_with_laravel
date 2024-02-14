@@ -9,6 +9,7 @@ use App\Models\backend\Job;
 use App\Models\backend\Location;
 use App\Models\Company;
 use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,9 +58,16 @@ class JobController extends Controller
     public function store(Request $request)
     { 
         $companyID = Auth::guard('company')->user()->id;
+
+        $expiredPayment = Payment::where('company_id', $companyID)->latest()->first();
+        if ($expiredPayment && Carbon::parse($expiredPayment->expired_date)->isToday()) {
+            $post = Company::find($companyID);
+            $post->limit = 0;
+            $post->save();
+            return redirect()->back()->with('error', 'Your limit has expired. Please buy a package to continue.');
+        }
        
         $jobCount = Company::select('limit')->where('id', $companyID)->first();
-
         if($jobCount && $jobCount->limit > 0){
             $validate = $request->validate([
                 'title' => 'required',
@@ -101,7 +109,7 @@ class JobController extends Controller
                 $post->save();
                 return redirect('company/jobs')->with('msg', 'Job Successfully Post');
             }
-        }return redirect()->back();
+        }return redirect()->back()->with('error', 'You have out of limit. Please buy a package to continue.');
 
     }
 

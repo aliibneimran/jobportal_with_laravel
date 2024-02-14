@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('candidate_id');
             $table->integer('job_id');
             $table->integer('company_id');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

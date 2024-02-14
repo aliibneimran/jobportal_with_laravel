@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image',50)->nullable();
             $table->text('bio')->nullable();
             $table->integer('candidate_id');
-            $table->tinyInteger('status')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->integer('company_id');
             $table->integer('package_id')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->boolean('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
