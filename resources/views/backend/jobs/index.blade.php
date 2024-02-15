@@ -39,7 +39,10 @@
               @foreach ($jobs as $item)
                 <tr>
                   <td>{{$no++}}</td>
-                  <td><img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px"></td>
+                  <td>
+                    {{-- <img src="{{ asset('uploads/' . $item->image) }}" alt="Image" width="50px" height="50px"> --}}
+                    <img src="{{ asset($item->image ? 'uploads/' . $item->image : 'uploads/default_image.jpg') }}" alt="Image" width="50px" height="50px">
+                  </td>
                   <td>{{$item->title}}</td>
                   <td>{{$item->position}}</td>
                   <td>{{$item->salary}}</td>
