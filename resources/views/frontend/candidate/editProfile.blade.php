@@ -39,7 +39,7 @@
                     <div class="row" >
                       <div class="mt-35 mb-40 box-info-profie text-center">
                         <div>
-                            <img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
+                            <img src="{{asset('uploads/' . ($canDetails->image ?? 'candidate.jpg')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
                         </div>
                         <div class="m-auto p-10">
                             <button class="btn btn-primary"><input type="file" name="profile"></button>

@@ -40,7 +40,10 @@
                 <td>{{$item->contact}}</td>
                 <td>{{$item->email}}</td>
                 <td>
-                  <a href="" class="open-modal" data-id="{{$item->id}}" data-toggle="modal" data-target="#fileModal"><i class="mdi mdi-eye"></i></a>
+                  <button data-toggle="modal" data-target="#fileModal{{$item->id}}">
+                    <i class="mdi mdi-eye"></i>
+                  </button>
+                  
                 </td>
                 <td>{{$item->job_id}}</td>
                 <td>
@@ -71,7 +74,7 @@
 </div>
 @endsection
 <!-- Modal -->
-<div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+<div class="modal fade" id="fileModal{{$item->id}}" tabindex="-1" aria-labelledby="fileModalLabel{{$item->id}}" aria-hidden="true">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
           <div class="modal-header">
@@ -79,25 +82,36 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modalContent">
-            @if(Auth::guard('admin')->check())
-            {{$item->id}}
-            @endif
+            <iframe id="pdfViewer" class="cv" src="{{asset('uploads/cv/'.$item->cv)}}" style="width: 100%; height: 400px;" frameborder="0"></iframe>
           </div>  
       </div>
   </div>
 </div>
 
 @section('scripts')
-    <script>
-        // Add this script to handle dynamic content in the modal
-        $(document).ready(function() {
-            $('.open-modal').click(function() {
-                var itemId = $(this).data('id');
-                $('#modalContent').html(itemId);
-            });
-        });
-    </script>
-@endsection
-{{-- <iframe src="{{ asset('uploads/cv/') }}" width="100%" height="500px" frameborder="0"></iframe> --}}
 
-{{-- <a href="{{route('applications.show',$item->id) }}" class="view-cv-link" data-bs-toggle="modal" data-bs-target="#fileModal" data-cv="{{ $item->cv }}"><i class="mdi mdi-eye"></i></a> --}}
+<script>
+  $(document).ready(function () {
+    $('#fileModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var applicantId = button.data('applicant-id');
+
+      // Make an Ajax request to fetch the CV content
+      $.ajax({
+        url: '/cv/' + applicantId, // Adjust the route to match your setup
+        method: 'GET',
+        success: function (data) {
+          // Update the modal body with the fetched content
+          $('#fileModal .modal-body').html(data);
+        },
+        error: function (error) {
+          console.error('Error fetching CV content:', error);
+        }
+      });
+    });
+  });
+</script>
+
+
+
+@endsection

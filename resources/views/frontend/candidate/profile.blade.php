@@ -33,7 +33,8 @@
                     @if (Auth::guard('candidate')->check())
                     <div class="row">
                       <div class="mt-35 mb-40 box-info-profie text-center">
-                        <img src="{{asset('uploads/' . ($canDetails->image ?? '')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
+                        <img src="{{asset('uploads/' . ($canDetails->image ?? 'candidate.jpg')) }}" alt="Image" width="120px" height="120px" class="rounded-circle">
+
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
