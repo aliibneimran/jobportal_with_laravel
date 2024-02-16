@@ -20,7 +20,7 @@ class PackageController extends Controller
         return view('backend.packages.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request)f
     {
         // dd($request->all());
         $data = [
