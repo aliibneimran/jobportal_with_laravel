@@ -40,11 +40,7 @@
                 <td>{{$item->contact}}</td>
                 <td>{{$item->email}}</td>
                 <td>
-                  <button type="button" data-toggle="modal" data-target="#fileModal" data-applicant-id="{{ $item->id }}">
-                    <i class="mdi mdi-eye"></i>
-                  </button>
-                
-                  
+                  <button type="button" data-toggle="modal" data-target="#cvModal{{ $item->id }}"><i class="mdi mdi-eye"></i></button>
                 </td>
                 <td>{{$item->job_id}}</td>
                 <td>
@@ -67,51 +63,33 @@
                   </form>
                 </td>              
               </tr>
+              <!-- Modal -->
+              <div class="modal fade" id="cvModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="cvModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cvModalLabel">Applicant CV</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ $item->cv }}
+                            <iframe src="{{asset('uploads/cv/'.$item->cv)}}" style="width: 100%; height: 400px;" frameborder="0"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
             @endforeach
             @endif
             </tbody>
           </table>
       </div>
 </div>
-@endsection
-<!-- Modal -->
-<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true" data-applicant-id="">
-  <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="fileModalLabel">File Viewer</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body" id="modalContent">
-              <input type="text" id="applicantId" value="">
-              <p>Name: <span id="applicantName"></span></p>
-          </div> 
-      </div>
-  </div>
-</div>
-
-
-@section('scripts')
-<script>
-  $(document).ready(function () {
-      $('#fileModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget);
-          var applicantId = button.data('applicant-id');
-          var applicantName = button.data('applicant-name');
-          
-          // Set values in the modal
-          $(this).attr('data-applicant-id', applicantId);
-          $(this).attr('data-applicant-name', applicantName);
-          $('#applicantId').val(applicantId);
-          $('#applicantName').text(applicantName);
-      });
-  });
-</script>
 
 @endsection
 
 
-
-
-{{-- <iframe id="cv" src="{{asset('uploads/cv/'.$item->cv)}}" style="width: 100%; height: 400px;" frameborder="0"></iframe> --}}
