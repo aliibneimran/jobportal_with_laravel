@@ -40,9 +40,10 @@
                 <td>{{$item->contact}}</td>
                 <td>{{$item->email}}</td>
                 <td>
-                  <button data-toggle="modal" data-target="#fileModal{{$item->id}}">
+                  <button type="button" data-toggle="modal" data-target="#fileModal" data-applicant-id="{{ $item->id }}">
                     <i class="mdi mdi-eye"></i>
                   </button>
+                
                   
                 </td>
                 <td>{{$item->job_id}}</td>
@@ -74,44 +75,43 @@
 </div>
 @endsection
 <!-- Modal -->
-<div class="modal fade" id="fileModal{{$item->id}}" tabindex="-1" aria-labelledby="fileModalLabel{{$item->id}}" aria-hidden="true">
+<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true" data-applicant-id="">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="fileModalLabel">File Viewer</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+
           <div class="modal-body" id="modalContent">
-            <iframe id="pdfViewer" class="cv" src="{{asset('uploads/cv/'.$item->cv)}}" style="width: 100%; height: 400px;" frameborder="0"></iframe>
-          </div>  
+              <input type="text" id="applicantId" value="">
+              <p>Name: <span id="applicantName"></span></p>
+          </div> 
       </div>
   </div>
 </div>
 
-@section('scripts')
 
+@section('scripts')
 <script>
   $(document).ready(function () {
-    $('#fileModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget);
-      var applicantId = button.data('applicant-id');
-
-      // Make an Ajax request to fetch the CV content
-      $.ajax({
-        url: '/cv/' + applicantId, // Adjust the route to match your setup
-        method: 'GET',
-        success: function (data) {
-          // Update the modal body with the fetched content
-          $('#fileModal .modal-body').html(data);
-        },
-        error: function (error) {
-          console.error('Error fetching CV content:', error);
-        }
+      $('#fileModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          var applicantId = button.data('applicant-id');
+          var applicantName = button.data('applicant-name');
+          
+          // Set values in the modal
+          $(this).attr('data-applicant-id', applicantId);
+          $(this).attr('data-applicant-name', applicantName);
+          $('#applicantId').val(applicantId);
+          $('#applicantName').text(applicantName);
       });
-    });
   });
 </script>
 
-
-
 @endsection
+
+
+
+
+{{-- <iframe id="cv" src="{{asset('uploads/cv/'.$item->cv)}}" style="width: 100%; height: 400px;" frameborder="0"></iframe> --}}

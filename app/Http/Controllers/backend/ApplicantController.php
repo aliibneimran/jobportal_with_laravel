@@ -51,8 +51,9 @@ class ApplicantController extends Controller
     public function show(string $id)
     {
         $applicant = Applicant::find($id);
-        $cvContent = $applicant->cv;
-        return view('backend.applications.index',compact('cvContent'));
+        dd($applicant);
+        // $cvContent = $applicant->cv;
+        return view('backend.applications.index',compact('applicant'));
     }
 
     /**

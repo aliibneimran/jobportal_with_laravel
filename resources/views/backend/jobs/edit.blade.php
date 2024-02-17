@@ -69,7 +69,7 @@
     </div>
     <div class="form-group col-12">
       <label for="">Description</label>
-      <textarea name="description"  class="form-control">{{old('description',$jobs->description)}}</textarea>
+      <textarea name="description" id="editor" class="form-control">{{old('description',$jobs->description)}}</textarea>
     </div>
     <div class="form-group col-6">
       <label for="">Availability</label>

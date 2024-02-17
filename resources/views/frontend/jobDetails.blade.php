@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="content-single">
-                        {{$jobs->description}}
+                        {!!$jobs->description!!}
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">

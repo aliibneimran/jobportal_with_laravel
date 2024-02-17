@@ -69,6 +69,7 @@ class JobController extends Controller
 
         $company = Company::find($companyID);
         $jobCount = $company->limit;
+        $left = $jobCount-1; 
        
         // $jobCount = Company::select('limit')->where('id', $companyID)->first();
         if($jobCount > 0){
@@ -91,11 +92,12 @@ class JobController extends Controller
             }else {
                 $filename = 'uploads/default_image.jpg'; 
             }
+            
             if ($validate) {
                 $data = [
                     'title' => $request->title,
                     'position' => $request->position,
-                    'description' => $request->description,
+                    'description' => $request->cleanDescription,
                     'salary' => $request->salary,
                     'vacancy' => $request->vacancy,
                     'start_date' => $request->start_date,
@@ -112,7 +114,7 @@ class JobController extends Controller
                 $post = Company::find($companyID);
                 $post->limit = $post->limit -1;
                 $post->save();
-                return redirect('company/jobs')->with('msg', 'Job Successfully Posted. ' . $company->limit . ' posts left.');
+                return redirect('company/jobs')->with('msg', 'Job Successfully Posted. ' . $left . ' posts left.');
             }}
         }
         return redirect()->back()->with('error', 'You have out of limit. Please buy a package to continue.');

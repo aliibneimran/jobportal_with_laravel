@@ -74,7 +74,7 @@
     </div>
     <div class="form-group col-12">
       <label for="">Description</label>
-      <textarea name="description"  class="form-control" placeholder="Job Description">{{old('description')}}</textarea>
+      <textarea name="description" id="editor"  class="form-control" placeholder="Job Description">{{old('description')}}</textarea>
     </div>
     <div class="form-group col-6">
       <label for="">Availability</label>
