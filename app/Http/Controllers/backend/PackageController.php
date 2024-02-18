@@ -61,7 +61,7 @@ class PackageController extends Controller
         return redirect()->route('packages.index')->with('msg', 'Successfully Update'); 
     }
 
-    public function delete(string $id)
+    public function destroy(string $id)
     {
         $package = Package::find($id);
         $package->delete($id);

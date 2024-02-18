@@ -66,12 +66,14 @@ Route::prefix('admin')->group(function(){
     Route::get('industries/delete/{id}',[IndustryController::class,'delete'])->name('industries.delete')->middleware('admin');
 
     //Packages
-    Route::get('packages',[PackageController::class,'index'])->name('packages.index')->middleware('admin');
-    Route::get('packages/create',[PackageController::class,'create'])->name('packages.create')->middleware('admin');
-    Route::post('packages/store',[PackageController::class,'store'])->name('packages.store')->middleware('admin');
-    Route::get('packages/edit/{id}',[PackageController::class,'edit'])->name('packages.edit')->middleware('admin');
-    Route::post('packages/update/{id}',[PackageController::class,'update'])->name('packages.update')->middleware('admin');
-    Route::get('packages/delete/{id}',[PackageController::class,'delete'])->name('packages.delete')->middleware('admin');
+    Route::resource('packages', PackageController::class)->middleware('admin');
+
+    // Route::get('packages',[PackageController::class,'index'])->name('packages.index')->middleware('admin');
+    // Route::get('packages/create',[PackageController::class,'create'])->name('packages.create')->middleware('admin');
+    // Route::post('packages/store',[PackageController::class,'store'])->name('packages.store')->middleware('admin');
+    // Route::get('packages/edit/{id}',[PackageController::class,'edit'])->name('packages.edit')->middleware('admin');
+    // Route::post('packages/update/{id}',[PackageController::class,'update'])->name('packages.update')->middleware('admin');
+    // Route::get('packages/delete/{id}',[PackageController::class,'delete'])->name('packages.delete')->middleware('admin');
 
     Route::get('jobs', [JobController::class,'index'])->name('all-jobs')->middleware('admin');
 

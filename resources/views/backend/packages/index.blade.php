@@ -38,7 +38,7 @@
                     <div class="d-flex justify-content-center mt-auto">
                       @if (Auth::guard('admin')->check())
                         <a href="{{ route('packages.edit', $item->id) }}" ><i class="mdi mdi-square-edit-outline"></i></a>
-                        <form method="POST" action="{{ route('packages.delete', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
+                        <form method="POST" action="{{ route('packages.destroy', $item->id) }}" style="display:inline;" onsubmit="return confirm('Are you sure to delete')">
                           @csrf
                           <button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
                               <i class="mdi mdi-trash-can-outline"></i>
